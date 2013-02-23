@@ -1,9 +1,13 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 
 \usepackage{graphicx}
 
+
+
 \newcommand{\specialcell}[2][l]{%
-  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+
 
 \title{\begin{flushright}\textbf{Visi\'on y Alcance} \\[0.7in] 
 		Proyecto: \\[0.2in]
@@ -16,6 +20,8 @@
 		\end{flushright}}
 \author{}
 \date{}
+
+
 \begin{document}
 
 \maketitle
@@ -84,15 +90,45 @@ Desarrollar la aplicaci\'on para el sistema operativo Android con una interfaz d
 
 \subsection{Necesidades del cliente}
 
+El problema que presenta el cliente de divulgaci\'on de informaci\'on se puede resolver con este producto mediante el uso de tecnologia m\'ovil que facilitar\'a a la comunidad estudiantil con la informaci\'on necesaria al alcance de sus manos mediante el uso de un celular o otro dispositivo capaz de usar el sistema operativo Android version 2.3 o superior.
+
 \subsection{Riesgos del Negocio}
+
+
 
 \section{Visi\'on de la Soluci\'on}
 
 \subsection{Estatuto de la visi\'on}
 
+Este producto para el Departamento de Salud del Insituto Tecnol\'ogico de Costa Rica, brindar\'a una ayuda a la divulgaci\'on de informaci\'on sobre este departamento, mediante la utilizaci\'on de tecnol\'ogia m\'ovil, como lo son los dispositivos con sistema operativo Android. Este producto pretende tambien ayudar a la comunidad estudiantil con la informaci\'on de este departamento, facilitando la comunicaci\'on entre los mismos.
+
 \subsection{Características principales}
 
+Entre las caracteristicas principales de este producto se encuentran:
+\begin{itemize}
+	\item{Una interfaz gr\'afica de usuario amigable.}
+	\item{Brindar el fac\'il acceso a la informaci\'on por parte de los estudiantes.}
+	\item{Facilitar el uso de tecnol\'ogia para recordar a los estudiantes de sus citas.}
+	\item{Facilitar la comunicaci\'on entre el Depto. de Salud y los estudiantes.}
+\end{itemize}
+
+
 \subsection{Suposiciones y dependencias}
+
+\begin{itemize}
+
+\item{Supociciones}
+\begin{itemize}
+	\item{El sistema operativo de este producto ser\'a Android.}
+	\item{La version de Android en la que se desarrollar\'a el sistema ser\'a 2.3.}
+\end{itemize}
+
+\item{Dependencias}
+\begin{itemize}
+	\item{El Depto. de salud brindar\'a la informaci\'on necesaria para la aplicaci\'on.}
+\end{itemize}
+
+\end{itemize}
 
 \subsection{Costo y Precio}
 
@@ -108,9 +144,36 @@ La instalaci\'on de este sistema se hara mediante un link a una descarga la cual
 
 \subsection{Alcance de la Versi\'on Inicial}
 
+El alcance de la versi\'on inicial incluye la informaci\'on basica del Depto. de salud:
+\begin{itemize}
+	\item{Horarios.}
+	\item{Ubicaci\'on.}
+	\item{Informaci\'on de Contacto.}
+	\begin{itemize}
+		\item{Opci\'on para marcado de alg\'un contacto.}
+		\item{Opci\'on para enviar correo electronico.}
+	\end{itemize}
+	\item{Link a sitios web de inter\'es.}
+\end{itemize}
+
 \subsection{Alcance de las Versiones Siguientes}
 
+En las versiones siguientes el usuario podr\'a manejar sus citas a la base de datos del celular y este dara notificaciones al usuario cuando tenga una cita.
+
+\begin{itemize}
+	\item{Agregar citas a la base de datos.}
+	\item{Configuraci\'on de tiempo de las notificaciones.}
+\end{itemize}
+\begin{footnotesize} Nota Importante: Este versi\'on del sistema no registrar\'a citas en el sistema del depto. de salud, y el \'unico capaz de ver y modificar esta informaci\'on es el usuario de la aplicaci\'on. \end{footnotesize}
+
+
 \subsection{Limitaciones y Exclusiones}
+
+\begin{itemize}
+	\item{Conectividad con otros sistemas para una entrada de noticias a la aplicaci\'on.}
+	\item{Notificaciones del Depto. de salud acerca de cambios de citas.}
+	\item{Solicitud de citas atravez de la aplicaci\'on.}
+\end{itemize}
 
 \section{Contexto del Sistema}
 
@@ -120,9 +183,25 @@ La instalaci\'on de este sistema se hara mediante un link a una descarga la cual
 
 \subsection{Perfiles de los Stakeholder}
 
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+	Interesado & Mejora &  Intereses & Limitaciones\\
+\hline
+	\specialcell{Depto.\\Salud} & \specialcell{Divulgaci\'on de informaci\'on \\a la comunidad estudiantil \\ con dispositivos Android.} & \specialcell{Divulgar Informaci\'on a la \\comunidad estudiantil.} & \specialcell{Debe correr en \\Android.} \\
+\hline
+	\specialcell{Comunidad\\Estudiantil} & \specialcell{Facilitar comunicaci\'on entre\\el interesado y el departamento\\de salud.} & \specialcell{Obtener informaci\'on de\\fac\'il acceso.} & \specialcell{Debe ser\\de\\fac\'il acceso.} \\
+\hline
+\end{tabular}
+
+
 \subsection{Prioridades del Proyecto}
 
 \subsection{Ambiente Operativo}
+
+El ambiente de este proyecto es m\'ovil, lo que quiere decir que los usuarios del sistema estaran en cualquier lugar cuando quieran entrar al sistema, al no utilizar servicios web, adem\'as de la descarga de la aplicaci\'on, no es necesario que este conectado a Internet, en posibles versiones futuras puede que se necesite el acceso a Internet.\\ 
+Los datos generados por la aplicaci\'on seran unicamente usados por los usuarios y no se distribuiran de ninguna forma.\\
+Los datos sensibles ser\'an almacenados en una base de datos interna del tel\'efono por lo que la \'unica forma de accesarlos sera mediante la aplicaci\'on y autorizacion del usuario.\\
+Al no haber ning\'un tipo de conexi\'on a Internet los tiempos de respuesta al usuario ser\'an inmediatos, de acuerdo con la velocidad de procesamiento que tenga el celular.
 
 \section{Calendario}
 
