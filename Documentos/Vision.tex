@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
 
 \usepackage{graphicx}
-
+\usepackage{pgfgantt}
+\usepackage{lscape}
 
 
 \newcommand{\specialcell}[2][l]{%
@@ -205,7 +206,80 @@ Los datos sensibles ser\'an almacenados en una base de datos interna del tel\'ef
 Al no haber ning\'un tipo de conexi\'on a Internet los tiempos de respuesta al usuario ser\'an inmediatos, de acuerdo con la velocidad de procesamiento que tenga el celular.
 
 \newpage
+
+\begin{landscape}
 \section{Calendario}
+
+\begin{center}
+
+\begin{ganttchart}[y unit title=0.4cm,
+y unit chart=0.4cm,
+vgrid,hgrid, 
+title label anchor/.style={below=-1.6ex},
+title left shift=.05,
+title right shift=-.05,
+title height=1,
+bar/.style={fill=gray!50},
+incomplete/.style={fill=blue!40},
+progress label text={},
+bar height=0.8,
+group right shift=0,
+group top shift=.6,
+group height=.5,
+group peaks={}{}{.2}]{28}
+%labels
+\gantttitle{Semanas}{28} \\
+\gantttitle{1}{2} 
+\gantttitle{2}{2} 
+\gantttitle{3}{2} 
+\gantttitle{4}{2} 
+\gantttitle{5}{2} 
+\gantttitle{6}{2}
+\gantttitle{7}{2}
+\gantttitle{8}{2}
+\gantttitle{9}{2}
+\gantttitle{10}{2}
+\gantttitle{11}{2}
+\gantttitle{12}{2}
+\gantttitle{13}{2} 
+\gantttitle{14}{2} \\
+%tasks
+\ganttbar[progress=0]{Presentar Propuesta}{1}{2} \\
+\ganttbar[progress=0]{Definir Visi\'on}{3}{4} \\
+\ganttbar[progress=0]{Prototipo Aplicaci\'on}{5}{5} \\
+\ganttbar[progress=0]{Presentar Prototipo}{6}{6} \\
+
+\ganttbar[progress=0]{Creaci\'on ERS Iter. 1}{7}{8} \\
+\ganttbar[progress=0]{Creaci\'on SAT Iter. 1}{9}{10} \\
+\ganttbar[progress=0]{Creaci\'on Plan Pruebas Iter. 1}{7}{8} \\
+\ganttbar[progress=0]{Desarrollo 2 casos de uso}{7}{12} \\
+\ganttbar[progress=0]{Creaci\'on Manual de Usuario}{11}{11} \\
+\ganttbar[progress=0]{Presentaci\'on Iter. 1}{11}{11} \\
+
+\ganttbar[progress=0]{Creaci\'on ERS Iter. 2}{13}{14} \\
+\ganttbar[progress=0]{Creaci\'on SAT Iter. 2}{15}{16} \\
+\ganttbar[progress=0]{Creaci\'on Plan Pruebas Iter. 2}{13}{14} \\
+\ganttbar[progress=0]{Desarrollo 2 casos de uso}{13}{18} \\
+\ganttbar[progress=0]{Creaci\'on Manual de Usuario}{17}{17} \\
+\ganttbar[progress=0]{Presentaci\'on Iter. 2}{17}{17} \\
+
+\ganttbar[progress=0]{Creaci\'on ERS Iter. 3}{19}{20} \\
+\ganttbar[progress=0]{Creaci\'on SAT Iter. 3}{21}{22} \\
+\ganttbar[progress=0]{Creaci\'on Plan Pruebas Iter. 3}{19}{20} \\
+\ganttbar[progress=0]{Desarrollo 2 casos de uso}{19}{24} \\
+\ganttbar[progress=0]{Creaci\'on Manual de Usuario}{23}{23} \\
+\ganttbar[progress=0]{Presentaci\'on Iter. 3}{23}{23} \\
+
+\ganttbar[progress=0]{Plan e Informe del Sistema}{25}{26} \\
+\ganttbar[progress=0]{Manual del sistema}{27}{28} 
+
+
+\end{ganttchart}
+\end{center}
+
+\end{landscape}
+
+
 
 
 \end{document}
