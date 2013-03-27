@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TEClinica</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="mapa">Mapa</string>
+    <string name="servicios">Servicios</string>
+    <string name="tab">&quot;    -&gt;&quot;</string>
+
+</resources>
