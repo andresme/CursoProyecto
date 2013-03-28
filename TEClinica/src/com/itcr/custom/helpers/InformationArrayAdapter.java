@@ -1,4 +1,4 @@
-package com.itrcr.custom.helpers;
+package com.itcr.custom.helpers;
 
 public class InformationArrayAdapter {
 

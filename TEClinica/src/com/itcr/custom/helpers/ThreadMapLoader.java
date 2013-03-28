@@ -1,6 +1,6 @@
-package com.itrcr.custom.helpers;
+package com.itcr.custom.helpers;
 
-import com.itrcr.custom.utils.Utils;
+import com.itcr.custom.utils.Utils;
 
 import android.graphics.Rect;
 import android.os.AsyncTask;

@@ -10,8 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.itcr.clinica.R;
-import com.itrcr.custom.helpers.MapView;
-import com.itrcr.custom.helpers.ThreadMapLoader;
+import com.itcr.custom.helpers.MapView;
+import com.itcr.custom.helpers.ThreadMapLoader;
 
 public class MapActivity extends Activity implements OnGestureListener{
 
