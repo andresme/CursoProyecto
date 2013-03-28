@@ -1,45 +1,70 @@
 package com.itrcr.custom.helpers;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.itrcr.custom.utils.Utils;
 
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapRegionDecoder;
 import android.graphics.Rect;
+import android.os.AsyncTask;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 
-public class ThreadMapLoader implements Runnable{
+public class ThreadMapLoader extends AsyncTask<Void, Void, Void>{
+
+	private int minXScroll;
+	private int minYScroll;
+	private int maxXScroll;
+	private int maxYScroll;
+	private int displayX;
+	private int displayY;
+	private Rect drawRegion;
+
+	public static boolean running;
+
 
 	@Override
-	public void run() {
-		AssetManager assetManager = MapView.ct.getAssets();
-		InputStream istr;
-		Rect drawRegion;
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inPreferredConfig = Config.RGB_565;
+	protected void onPreExecute() {
+		super.onPreExecute();
+
+		DisplayMetrics metrics = MapView.ct.getResources().getDisplayMetrics();
+
+		displayX = metrics.widthPixels;
+		displayY = metrics.heightPixels;
+
+		MapView.map = Utils.getBitmapFromAsset(MapView.ct, "mapa.png", 0, 0, displayX, displayY);
+
+		minXScroll = 0;
+		minYScroll = 0;
+		maxXScroll = Utils.getWidth(MapView.ct.getApplicationContext(), "mapa.png")-displayX;
+		maxYScroll = Utils.getHeight(MapView.ct.getApplicationContext(), "mapa.png")-displayY;
+
 		drawRegion = new Rect(MapView.xPosition, MapView.yPosition,
-				MapView.xPosition+MapView.imgSizeX, MapView.yPosition+MapView.imgSizeY);
-		try {
-			istr = assetManager.open("mapa.png");
-			BitmapRegionDecoder decoder = BitmapRegionDecoder.newInstance(istr, true);
-			while(true){
-				if(MapView.changed){
-					drawRegion.left = MapView.xPosition;
-					drawRegion.top = MapView.yPosition;
-					drawRegion.right = MapView.xPosition+MapView.imgSizeX;
-					drawRegion.bottom = MapView.yPosition+MapView.imgSizeY;
-					
-					MapView.map = decoder.decodeRegion(drawRegion, options);
-					MapView.changed = false;
-				}
-			}
-		} catch (IOException e) {
-			Log.e("Thread MapLoader Error", e.getMessage());
+				MapView.xPosition+displayX, MapView.yPosition+displayY);
+		running = true;
+	}
+
+	@Override
+	protected Void doInBackground(Void... arg0) {
+		while(running){
+			if(MapView.xPosition <= minXScroll) 
+				MapView.xPosition = minXScroll;
+			if(MapView.yPosition <= minYScroll) 
+				MapView.yPosition = minYScroll;
+			if(MapView.xPosition >= maxXScroll) 
+				MapView.xPosition = maxXScroll;
+			if(MapView.yPosition >= maxYScroll) 
+				MapView.yPosition = maxYScroll;
+
+			drawRegion.left = MapView.xPosition;
+			drawRegion.top = MapView.yPosition;
+			drawRegion.right = (MapView.xPosition + displayX);
+			drawRegion.bottom = (MapView.yPosition + displayY);
+
+			MapView.map.setBounds(drawRegion);
+			MapView.map.invalidateSelf();
+
 		}
+		Log.d("Thread", "finished");
+		return null;
 	}
 
 }

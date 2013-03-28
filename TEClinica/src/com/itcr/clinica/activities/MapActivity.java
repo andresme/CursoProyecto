@@ -11,20 +11,21 @@ import android.view.WindowManager;
 
 import com.itcr.clinica.R;
 import com.itrcr.custom.helpers.MapView;
+import com.itrcr.custom.helpers.ThreadMapLoader;
 
 public class MapActivity extends Activity implements OnGestureListener{
-	
+
 	private GestureDetector gestureScanner;
 	private MapView mapView;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-                                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		mapView = new MapView(this);
 		setContentView(mapView);
 		gestureScanner = new GestureDetector(this, this);
@@ -36,7 +37,26 @@ public class MapActivity extends Activity implements OnGestureListener{
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-	
+
+	@Override
+	protected void onPause(){
+		super.onPause();
+		ThreadMapLoader.running = false;
+	}
+
+	@Override 
+	protected void onResume(){
+		super.onResume();
+		MapView.loader = new ThreadMapLoader();
+		MapView.loader.execute();
+	}
+
+	@Override
+	protected void onDestroy(){
+		super.onDestroy();
+		ThreadMapLoader.running = false;
+	}
+
 	@Override
 	public boolean onTouchEvent(MotionEvent me){
 		return gestureScanner.onTouchEvent(me);
@@ -58,25 +78,24 @@ public class MapActivity extends Activity implements OnGestureListener{
 	@Override
 	public void onLongPress(MotionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float x1,
 			float y1) {
-		int x0 = mapView.getxPosition();
-		int y0 = mapView.getyPosition();
-		mapView.setxPosition(x0+(int)(x1));
-		mapView.setyPosition(y0+(int)(y1));
-		MapView.changed = true;
+
+		MapView.xPosition += (int)(x1);
+		MapView.yPosition += (int)(y1);
 		mapView.invalidate();
-		return false;
+
+		return true;
 	}
 
 	@Override
 	public void onShowPress(MotionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

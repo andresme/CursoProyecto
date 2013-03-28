@@ -5,32 +5,32 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 
 public class Utils {
 
-	public static Bitmap getBitmapFromAsset(Context context, String strName, int x0, int y0,
+	public static BitmapDrawable getBitmapFromAsset(Context context, String strName, int x0, int y0,
 			int x1, int y1) {
 	    AssetManager assetManager = context.getAssets();
 
 	    InputStream istr;
-	    Bitmap bitmap = null;
+	    BitmapDrawable bitmapDrawable = null;
 	    try {
 	        istr = assetManager.open(strName);
-	        BitmapRegionDecoder decoder = BitmapRegionDecoder.newInstance(istr, false);
-	        bitmap = decoder.decodeRegion(new Rect(x0, y0, x1, y1), null);
+	        bitmapDrawable = new BitmapDrawable(context.getResources(), istr);
+	        bitmapDrawable.setBounds(new Rect(x0, y0, x1, y1));
+	        bitmapDrawable.setTileModeX(Shader.TileMode.CLAMP);
 	    } catch (IOException e) {
 	        return null;
 	    }
-
-	    return bitmap.copy(bitmap.getConfig(), true);
+	    return bitmapDrawable;
 	}
 	
 	public static int getHeight(Context context, String strName) {
 	    AssetManager assetManager = context.getAssets();
-
 	    InputStream istr;
 	    try {
 	        istr = assetManager.open(strName);
@@ -43,7 +43,6 @@ public class Utils {
 	
 	public static int getWidth(Context context, String strName) {
 	    AssetManager assetManager = context.getAssets();
-
 	    InputStream istr;
 	    try {
 	        istr = assetManager.open(strName);
