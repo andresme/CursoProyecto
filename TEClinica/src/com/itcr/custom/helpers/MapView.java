@@ -90,10 +90,7 @@ public class MapView extends View {
 
 				mPosX += dx;
 				mPosY += dy;
-				if(mPosX > 0) mPosX = 0;
-				if(mPosY > 0) mPosY = 0;
-				if(mPosX < (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels) mPosX = (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels;
-				if(mPosY < (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels) mPosY = (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels;
+				
 
 				invalidate();
 			}
@@ -137,6 +134,10 @@ public class MapView extends View {
 	@Override
 	public void onDraw(Canvas g){
 		super.onDraw(g);
+		if(mPosX > 0) mPosX = 0;
+		if(mPosY > 0) mPosY = 0;
+		if(mPosX < (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels) mPosX = (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels;
+		if(mPosY < (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels) mPosY = (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels;
 		g.translate(mPosX, mPosY);
 		g.scale(mScaleFactor, mScaleFactor);
 
