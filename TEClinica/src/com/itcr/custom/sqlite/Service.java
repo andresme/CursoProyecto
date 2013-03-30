@@ -1,6 +1,6 @@
 package com.itcr.custom.sqlite;
 
-public class Servicio {
+public class Service {
 	private long id;
 	private String name;
 	private String information;
@@ -47,5 +47,4 @@ public class Servicio {
 
 	
 }
-
 
