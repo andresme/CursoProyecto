@@ -9,14 +9,15 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.itcr.clinica.R;
+
 public class ServicioDataSource {
 
 	  // Database fields
 	  private SQLiteDatabase database;
 	  private DataBaseHelper dbHelper;
-	  private String[] allColumns = { DataBaseHelper.COLUMN_ID,
-			  DataBaseHelper.COLUMN_NAME, DataBaseHelper.COLUMN_INFORMATION,
-			  DataBaseHelper.COLUMN_WEBSITE};
+	  private String[] allColumns = { R.string.column_id,R.string.column_name,
+			  R.string.column_information,R.string.column_website};
 
 	  public ServicioDataSource(Context context) {
 	    dbHelper = new DataBaseHelper(context);
@@ -32,12 +33,12 @@ public class ServicioDataSource {
 
 	  public Servicio createServicio(String name, String information, String website) {
 	    ContentValues values = new ContentValues();
-	    values.put(DataBaseHelper.COLUMN_NAME, name);
-	    values.put(DataBaseHelper.COLUMN_INFORMATION, information);
-	    values.put(DataBaseHelper.COLUMN_WEBSITE, website);
-	    long insertId = database.insert(DataBaseHelper.TABLE,null,values);
-	    Cursor cursor = database.query(DataBaseHelper.TABLE,
-	        allColumns, DataBaseHelper.COLUMN_ID + " = " + insertId, null,
+	    values.put(R.string.column_name, name);
+	    values.put(R.string.column_information, information);
+	    values.put(R.string.column_website, website);
+	    long insertId = database.insert(R.string.table_service,null,values);
+	    Cursor cursor = database.query(R.string.table_service,
+	        allColumns, R.string.column_id + " = " + insertId, null,
 	        null, null, null);
 	    cursor.moveToFirst();
 	    Servicio newServicio = cursorToServicio(cursor);
@@ -48,13 +49,13 @@ public class ServicioDataSource {
 	  public void deleteServicio(Servicio servicio) {
 	    long id = servicio.getID();
 	    System.out.println("Comment deleted with id: " + id);
-	    database.delete(DataBaseHelper.TABLE,DataBaseHelper.COLUMN_ID + " = " + id, null);
+	    database.delete(R.string.table_service,R.string.column_id+ " = " + id, null);
 	  }
 
 	  public List<Servicio> getAllServicios() {
 	    List<Servicio> comments = new ArrayList<Servicio>();
 
-	    Cursor cursor = database.query(DataBaseHelper.TABLE,allColumns, null, null, null, null, null);
+	    Cursor cursor = database.query(R.string.table_service,allColumns, null, null, null, null, null);
 
 	    cursor.moveToFirst();
 	    while (!cursor.isAfterLast()) {
