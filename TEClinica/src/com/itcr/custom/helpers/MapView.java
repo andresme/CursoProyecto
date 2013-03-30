@@ -13,6 +13,8 @@ import android.view.View;
 import com.itcr.custom.utils.Utils;
 
 public class MapView extends View {
+	
+	private static final String MAP = "mapa.png";
 	private static final int INVALID_POINTER_ID = -1;
 
 	private BitmapDrawable mMap;
@@ -20,7 +22,7 @@ public class MapView extends View {
 	private float mPosY;
 	private float mMin;
 	private DisplayMetrics mMetrics;
-	
+
 	private int mSizeX;
 	private int mSizeY;
 
@@ -50,15 +52,15 @@ public class MapView extends View {
 	}
 
 	public void sharedConstructor(Context context){
-		mSizeX = Utils.getWidth(this.getContext(), "mapa.png");
-		mSizeY = Utils.getHeight(this.getContext(), "mapa.png");
-		mMap = Utils.getBitmapFromAsset(this.getContext(), "mapa.png", 0, 0, mSizeX, mSizeY);
+		mSizeX = Utils.getWidth(this.getContext(), MAP);
+		mSizeY = Utils.getHeight(this.getContext(), MAP);
+		mMap = Utils.getBitmapFromAsset(this.getContext(), MAP, 0, 0, mSizeX, mSizeY);
 		mMetrics = new DisplayMetrics();
 		((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
 		float Xpx = mMetrics.widthPixels;
 		float Ypy = mMetrics.heightPixels;
 		mMin = Math.max((Xpx/mSizeX), (Ypy/mSizeY));
-		
+
 	}
 
 	@Override
@@ -90,7 +92,7 @@ public class MapView extends View {
 
 				mPosX += dx;
 				mPosY += dy;
-				
+
 
 				invalidate();
 			}
