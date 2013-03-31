@@ -5,7 +5,9 @@ import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
@@ -26,18 +28,21 @@ public class InformationListActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_information);
 
+		Cursor serviceCursor;
+		ListAdapter serviceAdapter;
+
 		datasource = new DataSourceService(this);
 		datasource.open();
 
-		Cursor serviceCursor = datasource.getServiceCursor();
+		serviceCursor = datasource.getServiceCursor();
 
-		ListAdapter adapter = new SimpleCursorAdapter(this, 
+		serviceAdapter = new SimpleCursorAdapter(this, 
 				R.layout.row_information, serviceCursor, 
 				new String[] {getResources().getString(R.string.column_name), 
 				getResources().getString(R.string.column_website)},
 				new int[] {R.id.serviceName, R.string.column_website}, 1);
 
-		setListAdapter(adapter);
+		setListAdapter(serviceAdapter);
 	}
 
 	@Override
@@ -48,32 +53,38 @@ public class InformationListActivity extends ListActivity {
 	@Override
 	protected Dialog onCreateDialog(int id){
 		AlertDialog dialog = null;
+		Builder builder = new AlertDialog.Builder(this);
+		String info = null; //= information from DB of service;
+		
 		switch (id) {
 		case DIALOG_INFORMATION:
-			// Create out AlterDialog
-			String info = null; //= information from DB;
-			Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(info);
 			builder.setCancelable(true);
 			builder.setPositiveButton("Ir a sitio web", new OkOnClickListener());
-			builder.setNegativeButton("Salir", new CancelOnClickListener());
-			dialog = builder.create();
-			dialog.show();
+			builder.setNegativeButton("Cancelar", new CancelOnClickListener());
+			builder.setIcon(android.R.drawable.ic_menu_info_details);
 		}
+		
+		dialog = builder.create();
+		dialog.show();
+		
 		return dialog;
 	}
 
 	private final class CancelOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			//visit website
+			
 		}
 	}
 
 	private final class OkOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			//exit pop-up
+			String website = null; //= website from DB;
+			Intent browser = new Intent(Intent.ACTION_VIEW, 
+					Uri.parse(website));
+			startActivity(browser);
 		}
 	}
 
