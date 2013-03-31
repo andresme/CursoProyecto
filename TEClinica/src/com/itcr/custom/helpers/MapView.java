@@ -13,7 +13,7 @@ import android.view.View;
 import com.itcr.custom.utils.Utils;
 
 public class MapView extends View {
-	
+
 	private static final String MAP = "mapa.png";
 	private static final int INVALID_POINTER_ID = -1;
 
@@ -52,13 +52,15 @@ public class MapView extends View {
 	}
 
 	public void sharedConstructor(Context context){
+		float Xpx;
+		float Ypy;
 		mSizeX = Utils.getWidth(this.getContext(), MAP);
 		mSizeY = Utils.getHeight(this.getContext(), MAP);
 		mMap = Utils.getBitmapFromAsset(this.getContext(), MAP, 0, 0, mSizeX, mSizeY);
 		mMetrics = new DisplayMetrics();
 		((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
-		float Xpx = mMetrics.widthPixels;
-		float Ypy = mMetrics.heightPixels;
+		Xpx = mMetrics.widthPixels;
+		Ypy = mMetrics.heightPixels;
 		mMin = Math.max((Xpx/mSizeX), (Ypy/mSizeY));
 
 	}

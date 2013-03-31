@@ -22,13 +22,13 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-	
-	
+
+
 	public void mapActivity(View v){
 		Intent mapIntent = new Intent(this, MapActivity.class);
 		startActivity(mapIntent);
 	}
-	
+
 	public void informationActivity(View v){
 		Intent informationIntent = new Intent(this, InformationListActivity.class);
 		startActivity(informationIntent);
