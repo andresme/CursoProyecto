@@ -86,6 +86,14 @@ public class DataSourceService {
 		cursor.close();
 		return services;
 	}
+	
+	public Cursor getServiceCursor(){
+		String[] serviceColumns = {res.getString(R.string.column_id), res.getString(R.string.column_information),
+				res.getString(R.string.column_name), res.getString(R.string.column_website)};
+
+		Cursor cursor = database.query(res.getString(R.string.table_service) , serviceColumns, null, null, null, null, null);
+		return cursor;
+	}
 
 	private Service cursorToService(Cursor cursor) {
 		Service service = new Service();

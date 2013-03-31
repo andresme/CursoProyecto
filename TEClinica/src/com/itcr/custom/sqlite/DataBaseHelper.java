@@ -20,7 +20,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase database){
 		String[] sql = this.res.getStringArray(R.array.database_create);
-
 		for (int i = 0; i < sql.length; i++){
 			database.execSQL(sql[i]);
 		}
