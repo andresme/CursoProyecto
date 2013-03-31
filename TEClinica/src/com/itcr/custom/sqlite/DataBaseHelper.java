@@ -1,6 +1,7 @@
 package com.itcr.custom.sqlite;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -9,17 +10,16 @@ import com.itcr.clinica.R;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-
-	private Context context;
+	private Resources res;
 
 	public DataBaseHelper(Context context, String databaseName, int version) {
 		super(context, databaseName, null, version);
-		this.context = context;
+		this.res = context.getResources();
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase database){
-		String[] sql = this.context.getResources().getStringArray(R.array.database_create);
+		String[] sql = this.res.getStringArray(R.array.database_create);
 
 		for (int i = 0; i < sql.length; i++){
 			database.execSQL(sql[i]);
