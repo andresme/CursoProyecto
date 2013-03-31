@@ -5,15 +5,12 @@ import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.itcr.clinica.R;
 import com.itcr.custom.sqlite.DataSourceService;
@@ -45,23 +42,25 @@ public class InformationListActivity extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id){
-		showDialog(DIALOG_INFORMATION);
+		onCreateDialog(DIALOG_INFORMATION);
 	}
 
 	@Override
 	protected Dialog onCreateDialog(int id){
+		AlertDialog dialog = null;
 		switch (id) {
 		case DIALOG_INFORMATION:
 			// Create out AlterDialog
+			String info = null; //= information from DB;
 			Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Aqui va la info de la base de datos...");
+			builder.setMessage(info);
 			builder.setCancelable(true);
 			builder.setPositiveButton("Ir a sitio web", new OkOnClickListener());
 			builder.setNegativeButton("Salir", new CancelOnClickListener());
-			AlertDialog dialog = builder.create();
+			dialog = builder.create();
 			dialog.show();
 		}
-		return super.onCreateDialog(id);
+		return dialog;
 	}
 
 	private final class CancelOnClickListener implements

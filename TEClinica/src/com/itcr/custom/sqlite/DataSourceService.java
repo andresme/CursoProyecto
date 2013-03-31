@@ -86,7 +86,7 @@ public class DataSourceService {
 		cursor.close();
 		return services;
 	}
-	
+
 	public Cursor getServiceCursor(){
 		String[] serviceColumns = {res.getString(R.string.column_id), res.getString(R.string.column_information),
 				res.getString(R.string.column_name), res.getString(R.string.column_website)};
