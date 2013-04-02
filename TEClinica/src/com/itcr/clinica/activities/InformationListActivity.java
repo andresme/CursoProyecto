@@ -1,5 +1,7 @@
 package com.itcr.clinica.activities;
 
+import java.util.List;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -16,12 +18,16 @@ import android.widget.ListView;
 
 import com.itcr.clinica.R;
 import com.itcr.custom.sqlite.DataSourceService;
+import com.itcr.datastructures.Service;
 
 
 public class InformationListActivity extends ListActivity {
 
 	private static final int DIALOG_INFORMATION = 1;
 	private DataSourceService datasource;
+	private static int id;
+	private List<Service> Service;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -35,6 +41,7 @@ public class InformationListActivity extends ListActivity {
 		datasource.open();
 
 		serviceCursor = datasource.getServiceCursor();
+		Service = datasource.getAllService();
 
 		serviceAdapter = new SimpleCursorAdapter(this, 
 				R.layout.row_information, serviceCursor, 
@@ -47,6 +54,7 @@ public class InformationListActivity extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id){
+		id = position;
 		onCreateDialog(DIALOG_INFORMATION);
 	}
 
@@ -54,7 +62,7 @@ public class InformationListActivity extends ListActivity {
 	protected Dialog onCreateDialog(int id){
 		AlertDialog dialog = null;
 		Builder builder = new AlertDialog.Builder(this);
-		String info = null; //= information from DB of service;
+		String info = Service.get(InformationListActivity.id).getInformation(); //= information from DB of service;
 		
 		switch (id) {
 		case DIALOG_INFORMATION:
@@ -81,7 +89,7 @@ public class InformationListActivity extends ListActivity {
 	private final class OkOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			String website = null; //= website from DB;
+			String website = Service.get(InformationListActivity.id).getWeb_Site(); //= website from DB;
 			Intent browser = new Intent(Intent.ACTION_VIEW, 
 					Uri.parse(website));
 			startActivity(browser);
