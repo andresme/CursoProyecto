@@ -1,5 +1,7 @@
 package com.itcr.clinica.activities;
 
+import java.util.List;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -16,13 +18,16 @@ import android.widget.ListView;
 
 import com.itcr.clinica.R;
 import com.itcr.custom.sqlite.DataSourceService;
+import com.itcr.datastructures.Service;
 
 
 public class InformationListActivity extends ListActivity {
 
 	private static final int DIALOG_INFORMATION = 1;
 	private DataSourceService datasource;
-
+	private static int id;
+	private List<Service> services;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -33,10 +38,10 @@ public class InformationListActivity extends ListActivity {
 
 		datasource = new DataSourceService(this);
 		datasource.open();
-
+		services = datasource.getAllService();
 		serviceCursor = datasource.getServiceCursor();
 
-		serviceAdapter = new SimpleCursorAdapter(this, 
+		serviceAdapter = new SimpleCursorAdapter(this,
 				R.layout.row_information, serviceCursor, 
 				new String[] {getResources().getString(R.string.column_name), 
 				getResources().getString(R.string.column_website)},
@@ -47,6 +52,7 @@ public class InformationListActivity extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id){
+		InformationListActivity.id = position;		
 		onCreateDialog(DIALOG_INFORMATION);
 	}
 
@@ -54,7 +60,10 @@ public class InformationListActivity extends ListActivity {
 	protected Dialog onCreateDialog(int id){
 		AlertDialog dialog = null;
 		Builder builder = new AlertDialog.Builder(this);
-		String info = null; //= information from DB of service;
+		String info = services.get(InformationListActivity.id).getInformation();
+		
+		
+		
 		
 		switch (id) {
 		case DIALOG_INFORMATION:
@@ -81,7 +90,7 @@ public class InformationListActivity extends ListActivity {
 	private final class OkOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			String website = null; //= website from DB;
+			String website = services.get(InformationListActivity.id).getWeb_Site();
 			Intent browser = new Intent(Intent.ACTION_VIEW, 
 					Uri.parse(website));
 			startActivity(browser);
