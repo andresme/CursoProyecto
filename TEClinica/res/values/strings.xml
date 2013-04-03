@@ -8,14 +8,12 @@
     <string name="servicios">Servicios</string>
     <string name="tab">&quot;    -&gt;&quot;</string>
     <string name="table_service">Service</string>
-    <string name="column_id">ID</string>
+    <string name="column_id">_id</string>
     <string name="column_name">Name</string>
     <string name="column_information">Information</string>
-    <string name="column_website">WebSite</string>
-    <string name="database_name">&quot;clinica.db&quot;</string>
+    <string name="column_website">Website</string>
+    <string name="database_name">ClinicaDB</string>
 
     <item name="database_version" format="integer" type="integer">1</item>
-
-    <string-array name="database_create"></string-array>
 
 </resources>

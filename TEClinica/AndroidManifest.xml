@@ -24,6 +24,7 @@
         </activity>
         <activity android:name="com.itcr.clinica.activities.MapActivity"
             	  android:screenOrientation="landscape"></activity>
+         <activity android:name="com.itcr.clinica.activities.InformationListActivity"></activity>
     </application>
 
 </manifest>

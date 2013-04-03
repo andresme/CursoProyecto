@@ -70,11 +70,12 @@ public class DataSourceService {
 	}
 
 	public List<Service> getAllService() {
-		String[] serviceColumns = {res.getString(R.string.column_id), res.getString(R.string.column_information),
-				res.getString(R.string.column_name), res.getString(R.string.column_website)};
+		String[] serviceColumns = {res.getString(R.string.column_id), res.getString(R.string.column_name),
+				res.getString(R.string.column_information), res.getString(R.string.column_website)};
 		List<Service> services = new ArrayList<Service>();
 
-		Cursor cursor = database.query(res.getString(R.string.table_service) , serviceColumns, null, null, null, null, null);
+		Cursor cursor = database.query(res.getString(R.string.table_service) , serviceColumns, null, null, 
+				null, null, res.getString(R.string.column_id));
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {

@@ -27,11 +27,10 @@ public class InformationListActivity extends ListActivity {
 	private DataSourceService datasource;
 	private static int id;
 	private List<Service> services;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_information);
 
 		Cursor serviceCursor;
 		ListAdapter serviceAdapter;
@@ -53,6 +52,7 @@ public class InformationListActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id){
 		InformationListActivity.id = position;		
+		id = position;
 		onCreateDialog(DIALOG_INFORMATION);
 	}
 
@@ -61,10 +61,9 @@ public class InformationListActivity extends ListActivity {
 		AlertDialog dialog = null;
 		Builder builder = new AlertDialog.Builder(this);
 		String info = services.get(InformationListActivity.id).getInformation();
-		
-		
-		
-		
+		info = info.replace("-", "\n-");
+
+
 		switch (id) {
 		case DIALOG_INFORMATION:
 			builder.setMessage(info);
@@ -73,17 +72,17 @@ public class InformationListActivity extends ListActivity {
 			builder.setNegativeButton("Cancelar", new CancelOnClickListener());
 			builder.setIcon(android.R.drawable.ic_menu_info_details);
 		}
-		
+
 		dialog = builder.create();
 		dialog.show();
-		
+
 		return dialog;
 	}
 
 	private final class CancelOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			
+
 		}
 	}
 
