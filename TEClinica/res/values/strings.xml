@@ -6,14 +6,6 @@
     <string name="menu_settings">Settings</string>
     <string name="mapa">Mapa</string>
     <string name="servicios">Servicios</string>
-    <string name="tab">&quot;    -&gt;&quot;</string>
-    <string name="table_service">Service</string>
-    <string name="column_id">_id</string>
-    <string name="column_name">Name</string>
-    <string name="column_information">Information</string>
-    <string name="column_website">Website</string>
-    <string name="database_name">ClinicaDB</string>
-
-    <item name="database_version" format="integer" type="integer">1</item>
+    <string name="tab">&quot;    &quot;</string>
 
 </resources>

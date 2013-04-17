@@ -15,40 +15,48 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.itcr.clinica.R;
 import com.itcr.custom.sqlite.DataSourceService;
 import com.itcr.custom.sqlite.SqlConstants;
-import com.itcr.datastructures.Service;
+import com.itcr.datastructures.Appointment;
 
-
-public class InformationListActivity extends ListActivity {
+public class ScheduleListActivity extends ListActivity {
 
 	private static final int DIALOG_INFORMATION = 1;
 	private DataSourceService datasource;
 	private static int id;
-	private List<Service> services;
+	private List<Appointment> appointments;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 
-		Cursor serviceCursor;
+		Cursor appointmentCursor;
 		ListAdapter serviceAdapter;
 
 		datasource = new DataSourceService(this);
 		datasource.open();
-		services = datasource.getAllService();
-		serviceCursor = datasource.getServiceCursor();
+		appointments = datasource.getAllAppointmentes();
 
-		serviceAdapter = new SimpleCursorAdapter(this,
-				R.layout.row_information, serviceCursor, 
-				new String[] {SqlConstants.COLUMN_NAME},
-				new int[] {R.id.serviceName}, 1);
+		if(!appointments.isEmpty()){
+			appointmentCursor = datasource.getAppointmentesCursor();
 
-		setListAdapter(serviceAdapter);
+			serviceAdapter = new SimpleCursorAdapter(this,
+					R.layout.row_information, appointmentCursor, 
+					new String[] {SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_DATE},
+					new int[] {R.id.name_appointment, R.id.date_appointment}, 1);
+
+			setListAdapter(serviceAdapter);
+		}
+		else{
+			Toast addToast = new Toast(this);
+			addToast.setText("Debe agregar citas primero");
+			addToast.show();
+		}
 	}
-
+	/*
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id){
 		InformationListActivity.id = position;		
@@ -60,17 +68,15 @@ public class InformationListActivity extends ListActivity {
 	protected Dialog onCreateDialog(int id){
 		AlertDialog dialog = null;
 		Builder builder = new AlertDialog.Builder(this);
-		String info = services.get(InformationListActivity.id).getInformation();
-		info = info.replace("-", "\n-");
-
+		String info = "¿Desea Borrar esta cita?";
 
 		switch (id) {
 		case DIALOG_INFORMATION:
 			builder.setMessage(info);
 			builder.setCancelable(true);
-			builder.setPositiveButton("Ir a sitio web", new OkOnClickListener());
+			builder.setPositiveButton("Borrar", new OkOnClickListener());
 			builder.setNegativeButton("Cancelar", new CancelOnClickListener());
-			builder.setIcon(android.R.drawable.ic_menu_info_details);
+			builder.setIcon(android.R.drawable.ic_menu_delete);
 		}
 
 		dialog = builder.create();
@@ -95,5 +101,6 @@ public class InformationListActivity extends ListActivity {
 			startActivity(browser);
 		}
 	}
+	*/
 
 }

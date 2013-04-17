@@ -5,28 +5,25 @@ import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.itcr.clinica.R;
+import com.itcr.datastructures.Appointment;
 import com.itcr.datastructures.Service;
 
 public class DataSourceService {
 
 	private SQLiteDatabase database;
 	private DataBaseHelper dbHelper;
-	private Resources res;
 
 	public DataSourceService(Context context) {
 		String dbName;
 		int version;
 
-		this.res = context.getResources();
-		dbName = res.getString(R.string.database_name);
-		version = res.getInteger(R.integer.database_version);
+		dbName = SqlConstants.NAME;
+		version = SqlConstants.VERSION;
 
 		dbHelper = new DataBaseHelper(context, dbName, version);
 	}
@@ -40,19 +37,19 @@ public class DataSourceService {
 	}
 
 	public Service createService(String name, String information, String website) {
-		String[] serviceColumns = {res.getString(R.string.column_id), res.getString(R.string.column_information),
-				res.getString(R.string.column_name), res.getString(R.string.column_website)};
+		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_INFORMATION, 
+				SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_WEBSITE};
 
 		ContentValues values = new ContentValues();
 
-		values.put(res.getString(R.string.column_name), name);
-		values.put(res.getString(R.string.column_information), information);
-		values.put(res.getString(R.string.column_website), website);
+		values.put(SqlConstants.COLUMN_NAME, name);
+		values.put(SqlConstants.COLUMN_INFORMATION, information);
+		values.put(SqlConstants.COLUMN_WEBSITE, website);
 
-		long insertId = database.insert(res.getString(R.string.table_service), null, values);
+		long insertId = database.insert(SqlConstants.TABLE_SERVICE, null, values);
 
-		Cursor cursor = database.query(res.getString(R.string.table_service),
-				serviceColumns, res.getString(R.string.column_id) + " = " + insertId, null,
+		Cursor cursor = database.query(SqlConstants.TABLE_SERVICE,
+				serviceColumns, SqlConstants.COLUMN_ID + " = " + insertId, null,
 				null, null, null);
 
 		cursor.moveToFirst();
@@ -66,16 +63,16 @@ public class DataSourceService {
 
 		Log.d("DeleteService", "deleted id:"+ id);
 
-		database.delete(res.getString(R.string.table_service), res.getString(R.string.column_id) + " = " + id, null);
+		database.delete(SqlConstants.TABLE_SERVICE, SqlConstants.COLUMN_ID + " = " + id, null);
 	}
 
 	public List<Service> getAllService() {
-		String[] serviceColumns = {res.getString(R.string.column_id), res.getString(R.string.column_name),
-				res.getString(R.string.column_information), res.getString(R.string.column_website)};
+		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_INFORMATION, 
+				SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_WEBSITE};
 		List<Service> services = new ArrayList<Service>();
 
-		Cursor cursor = database.query(res.getString(R.string.table_service) , serviceColumns, null, null, 
-				null, null, res.getString(R.string.column_id));
+		Cursor cursor = database.query(SqlConstants.TABLE_SERVICE , serviceColumns, null, null, 
+				null, null, SqlConstants.COLUMN_ID);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
@@ -89,10 +86,10 @@ public class DataSourceService {
 	}
 
 	public Cursor getServiceCursor(){
-		String[] serviceColumns = {res.getString(R.string.column_id), res.getString(R.string.column_information),
-				res.getString(R.string.column_name), res.getString(R.string.column_website)};
+		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_INFORMATION, 
+				SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_WEBSITE};
 
-		Cursor cursor = database.query(res.getString(R.string.table_service) , serviceColumns, null, null, null, null, null);
+		Cursor cursor = database.query(SqlConstants.TABLE_SERVICE , serviceColumns, null, null, null, null, null);
 		return cursor;
 	}
 
@@ -104,6 +101,69 @@ public class DataSourceService {
 		service.setWeb_Site(cursor.getString(3));
 		return service;
 	}
-	
-	
+
+	public Appointment createAppointment(String description, String date){
+
+		String[] appointmentColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAME,
+				SqlConstants.COLUMN_DESCRIPTION, SqlConstants.COLUMN_DATE};
+
+		ContentValues values = new ContentValues();
+
+		values.put(SqlConstants.COLUMN_DESCRIPTION, description);
+		values.put(SqlConstants.COLUMN_DATE, date);
+
+		long insertId = database.insert(SqlConstants.TABLE_SCHEDULE, null, values);
+
+		Cursor cursor = database.query(SqlConstants.TABLE_SCHEDULE,
+				appointmentColumns, SqlConstants.COLUMN_ID + " = " + insertId, null,
+				null, null, null);
+
+		cursor.moveToFirst();
+		Appointment newAppointment = cursorToAppointment(cursor);
+		cursor.close();
+		return newAppointment;
+	}
+
+	public List<Appointment> getAllAppointmentes(){
+		String[] appointmentColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAME,
+				SqlConstants.COLUMN_DESCRIPTION, SqlConstants.COLUMN_DATE};
+		List<Appointment> appointments = new ArrayList<Appointment>();
+
+		Cursor cursor = database.query(SqlConstants.TABLE_SCHEDULE, appointmentColumns, null, null, null, null, SqlConstants.COLUMN_ID);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			Appointment appointment = cursorToAppointment(cursor);
+			appointments.add(appointment);
+			cursor.moveToNext();
+		}
+
+		cursor.close();
+		return appointments;
+
+	}
+
+	public Cursor getAppointmentesCursor(){
+		String[] appointmentColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAME, 
+				SqlConstants.COLUMN_DESCRIPTION, SqlConstants.COLUMN_DATE};
+
+		Cursor cursor = database.query(SqlConstants.TABLE_SCHEDULE, appointmentColumns, null, null, null, null, SqlConstants.COLUMN_ID);
+
+		return cursor;
+
+	}
+
+
+
+	private Appointment cursorToAppointment(Cursor cursor){
+		Appointment appointment = new Appointment();
+		appointment.setId(cursor.getLong(0));
+		appointment.setName(cursor.getString(1));
+		appointment.setEvent(cursor.getString(2));
+		appointment.setDescription(cursor.getString(3));
+
+		return appointment;
+	}
+
+
 }

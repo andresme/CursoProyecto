@@ -11,8 +11,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.itcr.clinica.R;
-
 public class DataBaseHelper extends SQLiteOpenHelper {
 
 	private Context context;
@@ -47,10 +45,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.d(DataBaseHelper.class.getName(),"UPGRADING DATABASE FROM VERSION " + oldVersion +
-				" TO " + newVersion + ", WHICH WILL DESTROY ALL OLD DATA");
-		db.execSQL("DROP TABLE IF EXISTS " + R.string.table_service);
-		onCreate(db);
+		
 	}
 
 }
