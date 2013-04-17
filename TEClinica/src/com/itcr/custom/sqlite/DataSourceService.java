@@ -152,6 +152,11 @@ public class DataSourceService {
 		return cursor;
 
 	}
+	
+	public void deleteAppointment(long id){
+		Log.d("DeleteService", "deleted id:"+ id);
+		database.delete(SqlConstants.TABLE_SCHEDULE, SqlConstants.COLUMN_ID + " = " + id, null);
+	}
 
 
 

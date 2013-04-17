@@ -7,5 +7,9 @@
     <string name="mapa">Mapa</string>
     <string name="servicios">Servicios</string>
     <string name="tab">&quot;    &quot;</string>
+    <string name="add_appointment">Agregar Cita</string>
+    <string name="name">Nombre:</string>
+    <string name="description">Descripción</string>
+    <string name="date">Fecha:</string>
 
 </resources>

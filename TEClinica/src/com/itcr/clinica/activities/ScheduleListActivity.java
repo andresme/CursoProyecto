@@ -7,11 +7,10 @@ import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -56,10 +55,16 @@ public class ScheduleListActivity extends ListActivity {
 			addToast.show();
 		}
 	}
-	/*
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.schedule, menu);
+		return true;
+	}
+
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id){
-		InformationListActivity.id = position;		
+		ScheduleListActivity.id = position;		
 		id = position;
 		onCreateDialog(DIALOG_INFORMATION);
 	}
@@ -78,10 +83,8 @@ public class ScheduleListActivity extends ListActivity {
 			builder.setNegativeButton("Cancelar", new CancelOnClickListener());
 			builder.setIcon(android.R.drawable.ic_menu_delete);
 		}
-
 		dialog = builder.create();
 		dialog.show();
-
 		return dialog;
 	}
 
@@ -95,12 +98,7 @@ public class ScheduleListActivity extends ListActivity {
 	private final class OkOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			String website = services.get(InformationListActivity.id).getWeb_Site();
-			Intent browser = new Intent(Intent.ACTION_VIEW, 
-					Uri.parse(website));
-			startActivity(browser);
+			datasource.deleteAppointment(ScheduleListActivity.id);
 		}
 	}
-	*/
-
 }
