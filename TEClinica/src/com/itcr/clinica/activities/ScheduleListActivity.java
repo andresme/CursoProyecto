@@ -50,7 +50,7 @@ public class ScheduleListActivity extends ListActivity {
 		messageDialog = this.getResources().getString(R.string.dialog_message_delete);
 		positiveDialog = this.getResources().getString(R.string.positive);
 		negativeDialog = this.getResources().getString(R.string.negative);
-		titleDialogAdd =  this.getResources().getString(R.string.add_appointment);
+		titleDialogAdd =  this.getResources().getString(R.string.menu_add_appointment);
 		titleDialogDelete = this.getResources().getString(R.string.delete_appointment);
 
 		loadAppointments();

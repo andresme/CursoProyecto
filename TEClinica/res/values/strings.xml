@@ -2,10 +2,9 @@
 <resources>
 
     <string name="app_name">TEClinica</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Configuracion</string>
-    <string name="mapa">Mapa</string>
-    <string name="servicios">Servicios</string>
+    <string name="map">Mapa</string>
+    <string name="services">Servicios</string>
     <string name="tab">&quot;    &quot;</string>
     <string name="name">Nombre:</string>
     <string name="description">Descripción:</string>
@@ -21,7 +20,7 @@
     <string name="appointment_toast_message">Debe agregar una cita primero desde el menu.</string>
     <string name="positive">Aceptar</string>
     <string name="negative">Cancelar</string>
-    <string name="add_appointment">Agregar Cita</string>
+    <string name="menu_add_appointment">Agregar Cita</string>
     <string name="delete_appointment">Borrar Cita</string>
     <string name="appointment_toast_form_error_fields">Debe de llenar todos los campos</string>
     <string name="appointment_toast_form_accept">Cita agregada a la Agenda</string>

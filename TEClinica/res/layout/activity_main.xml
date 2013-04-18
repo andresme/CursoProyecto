@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="156dp"
         android:onClick="mapActivity"
-        android:text="@string/mapa" />
+        android:text="@string/map" />
 
     <Button
         android:id="@+id/button2"
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:onClick="informationActivity"
-        android:text="@string/servicios" />
+        android:text="@string/services" />
 
     <Button
         android:id="@+id/button3"
