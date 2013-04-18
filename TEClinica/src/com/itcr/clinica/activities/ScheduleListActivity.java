@@ -24,8 +24,9 @@ import com.itcr.datastructures.Appointment;
 public class ScheduleListActivity extends ListActivity {
 
 	private static final int DIALOG_INFORMATION = 1;
-	private DataSourceService datasource;
 	private static int id;
+	private String messageDialog;
+	private DataSourceService datasource;
 	private List<Appointment> appointments;
 
 	@Override
@@ -38,7 +39,9 @@ public class ScheduleListActivity extends ListActivity {
 		datasource = new DataSourceService(this);
 		datasource.open();
 		appointments = datasource.getAllAppointmentes();
-
+		
+		messageDialog = this.getResources().getString(R.string.dialog_message_delete);
+		
 		if(!appointments.isEmpty()){
 			appointmentCursor = datasource.getAppointmentesCursor();
 
@@ -63,9 +66,8 @@ public class ScheduleListActivity extends ListActivity {
 	}
 
 	@Override
-	protected void onListItemClick(ListView lv, View v, int position, long id){
-		ScheduleListActivity.id = position;		
-		id = position;
+	protected void onListItemClick(ListView lv, View v, int position, long id){		
+		id = appointments.get(position).getId();
 		onCreateDialog(DIALOG_INFORMATION);
 	}
 
@@ -73,11 +75,10 @@ public class ScheduleListActivity extends ListActivity {
 	protected Dialog onCreateDialog(int id){
 		AlertDialog dialog = null;
 		Builder builder = new AlertDialog.Builder(this);
-		String info = "¿Desea Borrar esta cita?";
 
 		switch (id) {
 		case DIALOG_INFORMATION:
-			builder.setMessage(info);
+			builder.setMessage(messageDialog);
 			builder.setCancelable(true);
 			builder.setPositiveButton("Borrar", new OkOnClickListener());
 			builder.setNegativeButton("Cancelar", new CancelOnClickListener());

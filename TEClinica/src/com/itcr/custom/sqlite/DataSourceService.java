@@ -189,7 +189,7 @@ public class DataSourceService {
 		long insertId = database.insert(SqlConstants.TABLE_CONTACT, null, values);
 		
 		Cursor cursor = database.query(SqlConstants.TABLE_CONTACT,
-				contactColumns, SqlConstants.COLUMN_ID = "=" + insertId, null,
+				contactColumns, SqlConstants.COLUMN_ID + "=" + insertId, null,
 				null, null, null);
 		
 		cursor.moveToFirst();
