@@ -27,6 +27,10 @@ public class ScheduleListActivity extends ListActivity {
 	private static final int DIALOG_INFORMATION = 1;
 	private static int id;
 	private String messageDialog;
+	private String positiveDialog;
+	private String negativeDialog;
+	private String titleDialogAdd;
+	private String titleDialogDelete;
 	private DataSourceService datasource;
 	private List<Appointment> appointments;
 
@@ -42,6 +46,10 @@ public class ScheduleListActivity extends ListActivity {
 		appointments = datasource.getAllAppointmentes();
 
 		messageDialog = this.getResources().getString(R.string.dialog_message_delete);
+		positiveDialog = this.getResources().getString(R.string.positive);
+		negativeDialog = this.getResources().getString(R.string.negative);
+		titleDialogAdd =  this.getResources().getString(R.string.add_appointment);
+		titleDialogDelete = this.getResources().getString(R.string.delete_appointment);
 
 		if(!appointments.isEmpty()){
 			appointmentCursor = datasource.getAppointmentesCursor();
@@ -54,14 +62,14 @@ public class ScheduleListActivity extends ListActivity {
 			setListAdapter(serviceAdapter);
 		}
 		else{
-			Toast addToast = Toast.makeText(this, "Debe agregar citas primero", Toast.LENGTH_SHORT);
+			String message = getResources().getString(R.string.appointme_toast_message);
+			Toast addToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
 			addToast.show();
 		}
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle item selection
 		switch (item.getItemId()) {
 		case R.id.Appointment:
 			clickAddAppointment();
@@ -74,7 +82,7 @@ public class ScheduleListActivity extends ListActivity {
 	public void clickAddAppointment(){
 		final Dialog addAppointment = new Dialog(this);
 		addAppointment.setContentView(R.layout.appointment_form);
-		addAppointment.setTitle("Agregar Cita");
+		addAppointment.setTitle(titleDialogAdd);
 
 		addAppointment.show();
 	}
@@ -98,10 +106,11 @@ public class ScheduleListActivity extends ListActivity {
 
 		switch (id) {
 		case DIALOG_INFORMATION:
+			builder.setTitle(titleDialogDelete);
 			builder.setMessage(messageDialog);
 			builder.setCancelable(true);
-			builder.setPositiveButton("Borrar", new OkOnClickListener());
-			builder.setNegativeButton("Cancelar", new CancelOnClickListener());
+			builder.setPositiveButton(positiveDialog, new OkOnClickListener());
+			builder.setNegativeButton(negativeDialog, new CancelOnClickListener());
 			builder.setIcon(android.R.drawable.ic_menu_delete);
 		}
 		dialog = builder.create();

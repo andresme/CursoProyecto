@@ -7,7 +7,6 @@
     <string name="mapa">Mapa</string>
     <string name="servicios">Servicios</string>
     <string name="tab">&quot;    &quot;</string>
-    <string name="add_appointment">Agregar Cita</string>
     <string name="name">Nombre:</string>
     <string name="description">Descripción:</string>
     <string name="date">Fecha:</string>
@@ -19,5 +18,10 @@
     <string name="agregar_btn">Agregar Cita</string>
     <string name="dialog_message_delete">¿Desea Borrar esta actividad?</string>
     <string name="schedule">Agenda</string>
+    <string name="appointme_toast_message">Debe agregar una cita primero desde el menu.</string>
+    <string name="positive">Aceptar</string>
+    <string name="negative">Cancelar</string>
+    <string name="add_appointment">Agregar Cita</string>
+    <string name="delete_appointment">Borrar Cita</string>
 
 </resources>
