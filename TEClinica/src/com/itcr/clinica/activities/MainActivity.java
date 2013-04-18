@@ -33,5 +33,10 @@ public class MainActivity extends Activity {
 		Intent informationIntent = new Intent(this, InformationListActivity.class);
 		startActivity(informationIntent);
 	}
+	
+	public void scheduleActivity(View v){
+		Intent scheduleActivity = new Intent(this, ScheduleListActivity.class);
+		startActivity(scheduleActivity);
+	}
 
 }

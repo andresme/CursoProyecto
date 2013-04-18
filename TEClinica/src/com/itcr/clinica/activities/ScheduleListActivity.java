@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -39,9 +40,9 @@ public class ScheduleListActivity extends ListActivity {
 		datasource = new DataSourceService(this);
 		datasource.open();
 		appointments = datasource.getAllAppointmentes();
-		
+
 		messageDialog = this.getResources().getString(R.string.dialog_message_delete);
-		
+
 		if(!appointments.isEmpty()){
 			appointmentCursor = datasource.getAppointmentesCursor();
 
@@ -53,12 +54,31 @@ public class ScheduleListActivity extends ListActivity {
 			setListAdapter(serviceAdapter);
 		}
 		else{
-			Toast addToast = new Toast(this);
-			addToast.setText("Debe agregar citas primero");
+			Toast addToast = Toast.makeText(this, "Debe agregar citas primero", Toast.LENGTH_SHORT);
 			addToast.show();
 		}
 	}
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.Appointment:
+			clickAddAppointment();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	public void clickAddAppointment(){
+		final Dialog addAppointment = new Dialog(this);
+		addAppointment.setContentView(R.layout.appointment_form);
+		addAppointment.setTitle("Agregar Cita");
+
+		addAppointment.show();
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.schedule, menu);

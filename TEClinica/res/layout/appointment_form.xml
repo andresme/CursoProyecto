@@ -64,14 +64,13 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
-            android:id="@+id/appointment_date"
+            android:id="@+id/editText2"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/date_example"
-            android:inputType="date"
-            android:singleLine="true" />
+            android:inputType="date" />
 
     </LinearLayout>
 
@@ -87,14 +86,13 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
-            android:id="@+id/appointment_time"
+            android:id="@+id/editText1"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/time_example"
-            android:inputType="time"
-            android:singleLine="true" />
+            android:inputType="time" />
 
     </LinearLayout>
 

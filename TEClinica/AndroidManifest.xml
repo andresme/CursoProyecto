@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="10" />
+        android:minSdkVersion="17"
+        android:targetSdkVersion="17" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +24,8 @@
         </activity>
         <activity android:name="com.itcr.clinica.activities.MapActivity"
             	  android:screenOrientation="landscape"></activity>
-         <activity android:name="com.itcr.clinica.activities.InformationListActivity"></activity>
+        <activity android:name="com.itcr.clinica.activities.InformationListActivity"></activity>
+        <activity android:name="com.itcr.clinica.activities.ScheduleListActivity"></activity>
     </application>
 
 </manifest>

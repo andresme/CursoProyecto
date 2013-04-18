@@ -18,5 +18,6 @@
     <string name="date_example">1/1/2013</string>
     <string name="agregar_btn">Agregar Cita</string>
     <string name="dialog_message_delete">¿Desea Borrar esta actividad?</string>
+    <string name="schedule">Agenda</string>
 
 </resources>
