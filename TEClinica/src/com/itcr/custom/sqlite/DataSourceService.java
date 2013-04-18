@@ -103,13 +103,14 @@ public class DataSourceService {
 		return service;
 	}
 
-	public Appointment createAppointment(String description, String date){
+	public Appointment createAppointment(String name, String description, String date){
 
 		String[] appointmentColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAME,
 				SqlConstants.COLUMN_DESCRIPTION, SqlConstants.COLUMN_DATE};
 
 		ContentValues values = new ContentValues();
 
+		values.put(SqlConstants.COLUMN_NAME, name);
 		values.put(SqlConstants.COLUMN_DESCRIPTION, description);
 		values.put(SqlConstants.COLUMN_DATE, date);
 
@@ -154,9 +155,9 @@ public class DataSourceService {
 
 	}
 	
-	public void deleteAppointment(long id){
-		Log.d("DeleteService", "deleted id:"+ id);
-		database.delete(SqlConstants.TABLE_SCHEDULE, SqlConstants.COLUMN_ID + " = " + id, null);
+	public void deleteAppointment(Appointment appointment){
+		Log.d("DeleteService", "deleted id:"+ appointment.getId());
+		database.delete(SqlConstants.TABLE_SCHEDULE, SqlConstants.COLUMN_ID + " = " + appointment.getId(), null);
 	}
 
 

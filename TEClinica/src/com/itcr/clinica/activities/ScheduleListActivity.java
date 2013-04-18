@@ -10,9 +10,13 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,12 +29,14 @@ import com.itcr.datastructures.Appointment;
 public class ScheduleListActivity extends ListActivity {
 
 	private static final int DIALOG_INFORMATION = 1;
-	private static int id;
+	private static Appointment selected;
+
 	private String messageDialog;
 	private String positiveDialog;
 	private String negativeDialog;
 	private String titleDialogAdd;
 	private String titleDialogDelete;
+
 	private DataSourceService datasource;
 	private List<Appointment> appointments;
 
@@ -38,12 +44,8 @@ public class ScheduleListActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 
-		Cursor appointmentCursor;
-		ListAdapter serviceAdapter;
-
 		datasource = new DataSourceService(this);
 		datasource.open();
-		appointments = datasource.getAllAppointmentes();
 
 		messageDialog = this.getResources().getString(R.string.dialog_message_delete);
 		positiveDialog = this.getResources().getString(R.string.positive);
@@ -51,18 +53,28 @@ public class ScheduleListActivity extends ListActivity {
 		titleDialogAdd =  this.getResources().getString(R.string.add_appointment);
 		titleDialogDelete = this.getResources().getString(R.string.delete_appointment);
 
+		loadAppointments();
+	}
+
+	private void loadAppointments(){
+
+		Cursor appointmentCursor;
+		ListAdapter serviceAdapter;
+
+		appointments = datasource.getAllAppointmentes();
 		if(!appointments.isEmpty()){
 			appointmentCursor = datasource.getAppointmentesCursor();
 
 			serviceAdapter = new SimpleCursorAdapter(this,
-					R.layout.row_information, appointmentCursor, 
+					R.layout.row_appointment, appointmentCursor, 
 					new String[] {SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_DATE},
 					new int[] {R.id.name_appointment, R.id.date_appointment}, 1);
 
 			setListAdapter(serviceAdapter);
 		}
 		else{
-			String message = getResources().getString(R.string.appointme_toast_message);
+			setListAdapter(null);
+			String message = getResources().getString(R.string.appointment_toast_message);
 			Toast addToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
 			addToast.show();
 		}
@@ -79,13 +91,51 @@ public class ScheduleListActivity extends ListActivity {
 		}
 	}
 
-	public void clickAddAppointment(){
+	private void clickAddAppointment(){
 		final Dialog addAppointment = new Dialog(this);
+
 		addAppointment.setContentView(R.layout.appointment_form);
 		addAppointment.setTitle(titleDialogAdd);
 
+		Button addButton = (Button) addAppointment.findViewById(R.id.add_button);
+		addButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				EditText nameET = (EditText) addAppointment.findViewById(R.id.appointment_name);
+				EditText descriptionET = (EditText) addAppointment.findViewById(R.id.appointment_description);
+				EditText dateET = (EditText) addAppointment.findViewById(R.id.appointment_date);
+				EditText timeET = (EditText) addAppointment.findViewById(R.id.appointment_time);
+
+				String name = nameET.getText().toString();
+				String description = descriptionET.getText().toString();
+				String date = dateET.getText().toString();
+				String time = timeET.getText().toString();
+
+				if(name.equals("") || description.equals("") || date.equals("") || time.equals("")){
+					String message = getResources().getString(R.string.appointment_toast_form_error_fields);
+					Toast addToast = Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT);
+					addToast.show();
+				}
+				else{
+					Appointment test = datasource.createAppointment(name, description, date+":-:"+time);
+					Log.d("test", test.getId()+"");
+					Log.d("test", test.getName());
+					Log.d("test", test.getDescription());
+					Log.d("test", test.getEvent());
+					String message = getResources().getString(R.string.appointment_toast_form_accept);
+					Toast addToast = Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT);
+					addToast.show();
+				}
+				loadAppointments();
+				addAppointment.dismiss();
+			}
+		});
+
 		addAppointment.show();
 	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,9 +144,11 @@ public class ScheduleListActivity extends ListActivity {
 	}
 
 	@Override
-	protected void onListItemClick(ListView lv, View v, int position, long id){		
-		id = appointments.get(position).getId();
-		onCreateDialog(DIALOG_INFORMATION);
+	protected void onListItemClick(ListView lv, View v, int position, long id){
+		if(!appointments.isEmpty()){
+			selected = appointments.get(position);
+			onCreateDialog(DIALOG_INFORMATION);
+		}
 	}
 
 	@Override
@@ -128,7 +180,8 @@ public class ScheduleListActivity extends ListActivity {
 	private final class OkOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			datasource.deleteAppointment(ScheduleListActivity.id);
+			datasource.deleteAppointment(ScheduleListActivity.selected);
+			loadAppointments();
 		}
 	}
 }

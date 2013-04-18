@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/Appointment" android:title="@string/add_appointment" android:orderInCategory="100"></item>
+    <item android:id="@+id/Notification" android:title="@string/menu_settings" android:orderInCategory="100"></item>
     
 
 </menu>
