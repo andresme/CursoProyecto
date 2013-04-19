@@ -6,16 +6,6 @@
     android:orientation="horizontal" >
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="156dp"
-        android:onClick="mapActivity"
-        android:text="@string/map" />
-
-    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,5 +24,25 @@
         android:layout_marginTop="52dp"
         android:text="@string/schedule" 
         android:onClick="scheduleActivity"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="88dp"
+        android:onClick="mapActivity"
+        android:text="@string/map" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:onClick="contactActivity"
+        android:text="@string/contact" />
 
 </RelativeLayout>

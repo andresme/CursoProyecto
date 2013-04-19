@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +27,7 @@ import com.itcr.datastructures.Appointment;
 
 public class ScheduleListActivity extends ListActivity {
 
-	private static final int DIALOG_INFORMATION = 1;
+	private static final int DELETE_DIALOG = 1;
 	private static Appointment selected;
 
 	private String messageDialog;
@@ -56,6 +55,7 @@ public class ScheduleListActivity extends ListActivity {
 		loadAppointments();
 	}
 
+	//Loads appointments from database and put them on the listview
 	private void loadAppointments(){
 
 		Cursor appointmentCursor;
@@ -80,6 +80,7 @@ public class ScheduleListActivity extends ListActivity {
 		}
 	}
 
+	//Menu buttons actions
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -91,6 +92,7 @@ public class ScheduleListActivity extends ListActivity {
 		}
 	}
 
+	//Menu button addAppointment action
 	private void clickAddAppointment(){
 		final Dialog addAppointment = new Dialog(this);
 
@@ -118,11 +120,7 @@ public class ScheduleListActivity extends ListActivity {
 					addToast.show();
 				}
 				else{
-					Appointment test = datasource.createAppointment(name, description, date+":-:"+time);
-					Log.d("test", test.getId()+"");
-					Log.d("test", test.getName());
-					Log.d("test", test.getDescription());
-					Log.d("test", test.getEvent());
+					datasource.createAppointment(name, description, date+":-:"+time);
 					String message = getResources().getString(R.string.appointment_toast_form_accept);
 					Toast addToast = Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT);
 					addToast.show();
@@ -136,28 +134,31 @@ public class ScheduleListActivity extends ListActivity {
 	}
 
 
-
+	//Creates the menu
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.schedule, menu);
 		return true;
 	}
-
+	
+	//When an item on the list is clicked
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id){
 		if(!appointments.isEmpty()){
 			selected = appointments.get(position);
-			onCreateDialog(DIALOG_INFORMATION);
+			onCreateDialog(DELETE_DIALOG);
 		}
 	}
-
+	
+	//Creates a dialog
 	@Override
 	protected Dialog onCreateDialog(int id){
 		AlertDialog dialog = null;
 		Builder builder = new AlertDialog.Builder(this);
 
 		switch (id) {
-		case DIALOG_INFORMATION:
+		//Delete Dialog.
+		case DELETE_DIALOG:
 			builder.setTitle(titleDialogDelete);
 			builder.setMessage(messageDialog);
 			builder.setCancelable(true);
@@ -170,13 +171,15 @@ public class ScheduleListActivity extends ListActivity {
 		return dialog;
 	}
 
+	//The cancel action
 	private final class CancelOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-
+			dialog.dismiss();
 		}
 	}
 
+	//The Accept action
 	private final class OkOnClickListener implements
 	DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {

@@ -38,5 +38,10 @@ public class MainActivity extends Activity {
 		Intent scheduleActivity = new Intent(this, ScheduleListActivity.class);
 		startActivity(scheduleActivity);
 	}
+	
+	public void contactActivity(View v){
+		Intent contactActivity = new Intent(this, ContactListActivity.class);
+		startActivity(contactActivity);
+	}
 
 }
