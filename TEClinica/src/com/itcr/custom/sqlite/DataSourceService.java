@@ -174,15 +174,16 @@ public class DataSourceService {
 	
 /* Contact*/
 	 
-	public Contact createContact(String nameC, String phoneO, String cell, String mail){
+	public Contact createContact(String nameC, String position, String phoneO, String cell, String mail){
 	
 		String[] contactColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAMECONTACT,
-				SqlConstants.COLUMN_PHONEOFFICE, SqlConstants.COLUMN_CELL, 
-				SqlConstants.COLUMN_MAIL};
+				SqlConstants.COLUMN_POSITION, SqlConstants.COLUMN_PHONEOFFICE, 
+				SqlConstants.COLUMN_CELL,SqlConstants.COLUMN_MAIL};
 		
 		ContentValues values = new ContentValues();
 		
 		values.put(SqlConstants.COLUMN_NAMECONTACT, nameC);
+		values.put(SqlConstants.COLUMN_POSITION,position);
 		values.put(SqlConstants.COLUMN_PHONEOFFICE, phoneO);
 		values.put(SqlConstants.COLUMN_CELL, cell);
 		values.put(SqlConstants.COLUMN_MAIL, mail);
@@ -202,8 +203,8 @@ public class DataSourceService {
 	
 	public List<Contact> getAllContacts(){
 		String[] contactColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAMECONTACT,
-				SqlConstants.COLUMN_PHONEOFFICE, SqlConstants.COLUMN_CELL, 
-				SqlConstants.COLUMN_MAIL};
+				SqlConstants.COLUMN_POSITION, SqlConstants.COLUMN_PHONEOFFICE, 
+				SqlConstants.COLUMN_CELL, SqlConstants.COLUMN_MAIL};
 		List<Contact> contacts = new ArrayList<Contact>();
 
 		Cursor cursor = database.query(SqlConstants.TABLE_CONTACT, contactColumns, null, null, null, null, SqlConstants.COLUMN_ID);
@@ -222,8 +223,8 @@ public class DataSourceService {
 
 	public Cursor getContactsCursor(){
 		String[] contactColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAMECONTACT,
-				SqlConstants.COLUMN_PHONEOFFICE, SqlConstants.COLUMN_CELL, 
-				SqlConstants.COLUMN_MAIL};
+				SqlConstants.COLUMN_POSITION, SqlConstants.COLUMN_PHONEOFFICE, 
+				SqlConstants.COLUMN_CELL, SqlConstants.COLUMN_MAIL};
 
 		Cursor cursor = database.query(SqlConstants.TABLE_CONTACT, contactColumns, null, null, null, null, SqlConstants.COLUMN_ID);
 
@@ -243,9 +244,10 @@ public class DataSourceService {
 		
 		contact.setID(cursor.getLong(0));
 		contact.setNameContact(cursor.getString(1));
-		contact.setPhoneOffice(cursor.getString(2));
-		contact.setCell(cursor.getString(3));
-		contact.setMail(cursor.getString(4));
+		contact.setDescription(cursor.getString(2));
+		contact.setPhoneOffice(cursor.getString(3));
+		contact.setCell(cursor.getString(4));
+		contact.setMail(cursor.getString(5));
 		
 		return contact;
 

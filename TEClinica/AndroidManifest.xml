@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="17"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="7"
+        android:targetSdkVersion="7" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application

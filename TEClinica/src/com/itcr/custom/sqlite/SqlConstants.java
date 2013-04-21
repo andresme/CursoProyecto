@@ -19,4 +19,5 @@ public interface SqlConstants {
 	public static final String COLUMN_PHONEOFFICE = "Phone";
 	public static final String COLUMN_CELL = "Cell";
 	public static final String COLUMN_MAIL = "Mail";
+	public static final String COLUMN_POSITION = "Position";
 }

@@ -3,6 +3,7 @@ package com.itcr.datastructures;
 public class Contact {
 	private long id;
 	private String nameContact;
+	private String description;
 	private String phoneOffice;
 	private String cell;
 	private String mail;
@@ -22,6 +23,14 @@ public class Contact {
 	
 	public void setNameContact(String name){
 		this.nameContact = name;
+	}
+	
+	public String getDescription(){
+		return description;
+	}
+	
+	public void setDescription(String description){
+		this.description = description;
 	}
 	
 	public String getPhoneOffice(){
@@ -52,6 +61,6 @@ public class Contact {
 	// Will be used by the ArrayAdapter in the ListView
 	@Override
 	public String toString(){
-		return nameContact + phoneOffice + cell + mail;
+		return nameContact + description + phoneOffice + cell + mail;
 	}
 }

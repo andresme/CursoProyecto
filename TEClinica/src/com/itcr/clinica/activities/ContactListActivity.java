@@ -41,14 +41,18 @@ public class ContactListActivity extends ListActivity {
 		datasource.open();
 		contacts = datasource.getAllContacts();
 		for(Contact i : contacts){
-			Log.d("test", i.getNameContact());
+			Log.d("test", i.getNameContact()+ i.getDescription());
+			
 		}
 		contactCursor = datasource.getContactsCursor();
 
 		contactAdapter = new SimpleCursorAdapter(this,
 				R.layout.row_contact, contactCursor, 
-				new String[] {SqlConstants.COLUMN_NAMECONTACT},
-				new int[] {R.id.contactName}, 1);
+				new String[] {SqlConstants.COLUMN_NAMECONTACT, SqlConstants.COLUMN_POSITION},
+				new int[] {R.id.contactName, R.id.position }, 1);
+		
+				
+		
 
 		setListAdapter(contactAdapter);
 	}
