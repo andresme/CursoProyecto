@@ -68,8 +68,8 @@ public class DataSourceService {
 	}
 
 	public List<Service> getAllService() {
-		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_INFORMATION, 
-				SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_WEBSITE};
+		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAME,
+				SqlConstants.COLUMN_INFORMATION, SqlConstants.COLUMN_WEBSITE};
 		List<Service> services = new ArrayList<Service>();
 
 		Cursor cursor = database.query(SqlConstants.TABLE_SERVICE , serviceColumns, null, null, 
@@ -78,6 +78,7 @@ public class DataSourceService {
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Service service = cursorToService(cursor);
+			Log.d("BD",service.getInformation());
 			services.add(service);
 			cursor.moveToNext();
 		}
@@ -87,8 +88,8 @@ public class DataSourceService {
 	}
 
 	public Cursor getServiceCursor(){
-		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_INFORMATION, 
-				SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_WEBSITE};
+		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAME, 
+				SqlConstants.COLUMN_INFORMATION, SqlConstants.COLUMN_WEBSITE};
 
 		Cursor cursor = database.query(SqlConstants.TABLE_SERVICE , serviceColumns, null, null, null, null, null);
 		return cursor;
