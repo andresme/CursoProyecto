@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.itcr.clinica.activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,9 +26,15 @@
         </activity>
         <activity android:name="com.itcr.clinica.activities.MapActivity"
             	  android:screenOrientation="landscape"></activity>
-        <activity android:name="com.itcr.clinica.activities.InformationListActivity"></activity>
-        <activity android:name="com.itcr.clinica.activities.ScheduleListActivity"></activity>
-        <activity android:name="com.itcr.clinica.activities.ContactListActivity"></activity>
+        <activity android:name="com.itcr.clinica.activities.InformationListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.itcr.clinica.activities.ScheduleListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.itcr.clinica.activities.ContactListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
