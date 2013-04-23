@@ -22,10 +22,8 @@ import com.itcr.custom.sqlite.DataSourceService;
 import com.itcr.custom.sqlite.SqlConstants;
 import com.itcr.datastructures.Contact;
 
-
 public class ContactListActivity extends ListActivity {
 
-	
 	private DataSourceService datasource;
 	private static int id;
 	private List<Contact> contacts;

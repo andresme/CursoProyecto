@@ -15,9 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.itcr.clinica.R;
@@ -97,7 +99,7 @@ public class ScheduleListActivity extends ListActivity {
 		final Dialog addAppointment = new Dialog(this);
 
 		addAppointment.setContentView(R.layout.appointment_form);
-		addAppointment.setTitle(titleDialogAdd);
+		addAppointment.setTitle(titleDialogAdd+"                                           ");
 
 		Button addButton = (Button) addAppointment.findViewById(R.id.add_button);
 		addButton.setOnClickListener(new OnClickListener() {
@@ -106,13 +108,13 @@ public class ScheduleListActivity extends ListActivity {
 			public void onClick(View v) {
 				EditText nameET = (EditText) addAppointment.findViewById(R.id.appointment_name);
 				EditText descriptionET = (EditText) addAppointment.findViewById(R.id.appointment_description);
-				EditText dateET = (EditText) addAppointment.findViewById(R.id.appointment_date);
-				EditText timeET = (EditText) addAppointment.findViewById(R.id.appointment_time);
-
+				DatePicker dateP = (DatePicker) addAppointment.findViewById(R.id.datePicker1);
+				TimePicker timeP = (TimePicker) addAppointment.findViewById(R.id.timePicker1);
+				
 				String name = nameET.getText().toString();
 				String description = descriptionET.getText().toString();
-				String date = dateET.getText().toString();
-				String time = timeET.getText().toString();
+				String date = dateP.getDayOfMonth()+"/"+dateP.getMonth()+"/"+dateP.getYear();
+				String time = timeP.getCurrentHour()+":"+timeP.getCurrentMinute();
 
 				if(name.equals("") || description.equals("") || date.equals("") || time.equals("")){
 					String message = getResources().getString(R.string.appointment_toast_form_error_fields);
