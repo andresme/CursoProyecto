@@ -60,4 +60,5 @@
             android:text="@string/emergency_call"
             android:onClick=""/>
 
+
 </RelativeLayout>

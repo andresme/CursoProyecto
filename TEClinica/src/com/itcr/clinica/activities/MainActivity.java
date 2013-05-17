@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.net.Uri;
 import android.view.View;
-
 import com.itcr.clinica.R;
 
 public class MainActivity extends Activity {
@@ -45,10 +44,10 @@ public class MainActivity extends Activity {
 		startActivity(contactActivity);
 	}
 
-	public void takeAppointmentActivity (View v){
-		Intent takeAppointmentActivity = new Intent(this, TakeAppointmentActivity.class);
-		startActivity(takeAppointmentActivity);		
-	}
+    public void takeAppointmentActivity (View v){
+        Intent takeAppointmentActivity = new Intent(this, TakeAppointmentActivity.class);
+        startActivity(takeAppointmentActivity);
+    }
 
     public void emergencyCall(View v){
         Intent call = new Intent (Intent.ACTION_CALL);
