@@ -68,8 +68,8 @@ public class DataSourceService {
 	}
 
 	public List<Service> getAllService() {
-		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_INFORMATION, 
-				SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_WEBSITE};
+		String[] serviceColumns = {SqlConstants.COLUMN_ID,SqlConstants.COLUMN_NAME, 
+				 SqlConstants.COLUMN_INFORMATION, SqlConstants.COLUMN_WEBSITE};
 		List<Service> services = new ArrayList<Service>();
 
 		Cursor cursor = database.query(SqlConstants.TABLE_SERVICE , serviceColumns, null, null, 
@@ -90,8 +90,7 @@ public class DataSourceService {
 		String[] serviceColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_INFORMATION, 
 				SqlConstants.COLUMN_NAME, SqlConstants.COLUMN_WEBSITE};
 
-		Cursor cursor = database.query(SqlConstants.TABLE_SERVICE , serviceColumns, null, null, null, null, null);
-		return cursor;
+		return database.query(SqlConstants.TABLE_SERVICE , serviceColumns, null, null, null, null, null);
 	}
 
 	private Service cursorToService(Cursor cursor) {
@@ -149,9 +148,7 @@ public class DataSourceService {
 		String[] appointmentColumns = {SqlConstants.COLUMN_ID, SqlConstants.COLUMN_NAME, 
 				SqlConstants.COLUMN_DESCRIPTION, SqlConstants.COLUMN_DATE};
 
-		Cursor cursor = database.query(SqlConstants.TABLE_SCHEDULE, appointmentColumns, null, null, null, null, SqlConstants.COLUMN_ID);
-
-		return cursor;
+		return database.query(SqlConstants.TABLE_SCHEDULE, appointmentColumns, null, null, null, null, SqlConstants.COLUMN_ID);
 
 	}
 	
@@ -226,9 +223,8 @@ public class DataSourceService {
 				SqlConstants.COLUMN_POSITION, SqlConstants.COLUMN_PHONEOFFICE, 
 				SqlConstants.COLUMN_CELL, SqlConstants.COLUMN_MAIL};
 
-		Cursor cursor = database.query(SqlConstants.TABLE_CONTACT, contactColumns, null, null, null, null, SqlConstants.COLUMN_ID);
+		return database.query(SqlConstants.TABLE_CONTACT, contactColumns, null, null, null, null, SqlConstants.COLUMN_ID);
 
-		return cursor;
 
 	}
 	

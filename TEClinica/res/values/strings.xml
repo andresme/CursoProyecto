@@ -25,5 +25,8 @@
     <string name="appointment_toast_form_error_fields">Debe de llenar todos los campos</string>
     <string name="appointment_toast_form_accept">Cita agregada a la Agenda</string>
     <string name="contact">Contacto</string>
+    <string name="takeappointment">Sacar Cita</string>
+    <string name="emergency_call">Emergency Call</string>
+    
 
 </resources>

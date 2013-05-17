@@ -26,15 +26,16 @@ import com.itcr.datastructures.Contact;
 public class ContactListActivity extends ListActivity {
 
 	
-	private DataSourceService datasource;
+
 	private static int id;
 	private List<Contact> contacts;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+        DataSourceService datasource;
 
-		Cursor contactCursor;
+        Cursor contactCursor;
 		ListAdapter contactAdapter;
 
 		datasource = new DataSourceService(this);

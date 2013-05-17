@@ -25,7 +25,6 @@ import com.itcr.datastructures.Service;
 public class InformationListActivity extends ListActivity {
 
 	private static final int DIALOG_INFORMATION = 1;
-	private DataSourceService datasource;
 	private static int id;
 	private List<Service> services;
 
@@ -33,6 +32,7 @@ public class InformationListActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 
+        DataSourceService datasource;
 		Cursor serviceCursor;
 		ListAdapter serviceAdapter;
 

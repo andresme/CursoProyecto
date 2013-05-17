@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TEClinica</string>
+    <string name="menu_settings">Configuracion</string>
+    <string name="map">Mapa</string>
+    <string name="services">Servicios</string>
+    <string name="tab">&quot;    &quot;</string>
+    <string name="name">Nombre:</string>
+    <string name="description">Descripción:</string>
+    <string name="date">Fecha:</string>
+    <string name="time">Hora:</string>
+    <string name="name_example">Nombre de la actividad</string>
+    <string name="description_example">Descripcion de la actividad</string>
+    <string name="time_example">5:45pm</string>
+    <string name="date_example">dd/mm/aaaa</string>
+    <string name="add_btn">Agregar Cita</string>
+    <string name="dialog_message_delete">¿Desea Borrar esta actividad?</string>
+    <string name="schedule">Agenda</string>
+    <string name="appointment_toast_message">Debe agregar una cita primero desde el menu.</string>
+    <string name="positive">Aceptar</string>
+    <string name="negative">Cancelar</string>
+    <string name="menu_add_appointment">Agregar Cita</string>
+    <string name="delete_appointment">Borrar Cita</string>
+    <string name="appointment_toast_form_error_fields">Debe de llenar todos los campos</string>
+    <string name="appointment_toast_form_accept">Cita agregada a la Agenda</string>
+    <string name="contact">Contacto</string>
+    <string name="emergency_call">Llamada Emergencia</string>
+
+</resources>
