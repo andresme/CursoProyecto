@@ -16,7 +16,7 @@
     <string name="date_example">dd/mm/aaaa</string>
     <string name="add_btn">Agregar Cita</string>
     <string name="dialog_message_delete">¿Desea Borrar esta actividad?</string>
-    <string name="schedule">Agenda</string>
+    <string name="schedule">Calendario</string>
     <string name="appointment_toast_message">Debe agregar una cita primero desde el menu.</string>
     <string name="positive">Aceptar</string>
     <string name="negative">Cancelar</string>
@@ -25,6 +25,9 @@
     <string name="appointment_toast_form_error_fields">Debe de llenar todos los campos</string>
     <string name="appointment_toast_form_accept">Cita agregada a la Agenda</string>
     <string name="contact">Contacto</string>
+    <string name="takeappointment">Sacar Cita</string>
     <string name="emergency_call">Llamada Emergencia</string>
+	<string name="go_web_site">Ir a sitio web</string>
+	<string name="offers">Ofrecemos</string>
 
 </resources>

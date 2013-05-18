@@ -140,9 +140,11 @@ public class MapView extends View {
 		super.onDraw(g);
 		if(mPosX > 0) mPosX = 0;
 		if(mPosY > 0) mPosY = 0;
-		if(mPosX < (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels) mPosX = (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels;
+
+        if(mPosX < (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels) mPosX = (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels;
 		if(mPosY < (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels) mPosY = (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels;
-		g.translate(mPosX, mPosY);
+
+        g.translate(mPosX, mPosY);
 		g.scale(mScaleFactor, mScaleFactor);
 
 		mMap.draw(g);

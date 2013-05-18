@@ -2,9 +2,9 @@ package com.itcr.clinica.activities;
 
 import java.util.ArrayList;
 
+import android.support.v4.app.FragmentActivity;
 import com.itcr.clinica.R;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-public class TakeAppointmentActivity extends Activity{
+public class TakeAppointmentActivity extends FragmentActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){

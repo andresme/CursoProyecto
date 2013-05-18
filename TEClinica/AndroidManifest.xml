@@ -23,11 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.itcr.clinica.activities.MapActivity"
-            	  android:screenOrientation="landscape"></activity>
-        <activity android:name="com.itcr.clinica.activities.InformationListActivity"></activity>
-        <activity android:name="com.itcr.clinica.activities.ScheduleListActivity"></activity>
-        <activity android:name="com.itcr.clinica.activities.ContactListActivity"></activity>
         <activity android:name="com.itcr.clinica.activities.TakeAppointmentActivity"></activity>
     </application>
 

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +23,7 @@ import com.itcr.custom.sqlite.SqlConstants;
 import com.itcr.datastructures.Contact;
 
 
-public class ContactListActivity extends ListActivity {
+public class ContactListActivity extends ListFragment {
 
 	
 
@@ -31,42 +31,42 @@ public class ContactListActivity extends ListActivity {
 	private List<Contact> contacts;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState){
+	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
         DataSourceService datasource;
 
         Cursor contactCursor;
 		ListAdapter contactAdapter;
 
-		datasource = new DataSourceService(this);
+		datasource = new DataSourceService(this.getActivity().getBaseContext());
 		datasource.open();
 		contacts = datasource.getAllContacts();
 		for(Contact i : contacts){
 			Log.d("test", i.getNameContact()+ i.getDescription());
-			
+
 		}
 		contactCursor = datasource.getContactsCursor();
 
-		contactAdapter = new SimpleCursorAdapter(this,
-				R.layout.row_contact, contactCursor, 
+		contactAdapter = new SimpleCursorAdapter(this.getActivity().getBaseContext(),
+				R.layout.row_contact, contactCursor,
 				new String[] {SqlConstants.COLUMN_NAMECONTACT, SqlConstants.COLUMN_POSITION},
 				new int[] {R.id.contactName, R.id.position }, 1);
-		
-				
-		
+
+
+
 
 		setListAdapter(contactAdapter);
 	}
 
 	@Override
-	protected void onListItemClick(ListView lv, View v, int position, long id){
-		final Dialog contactDialog = new Dialog(this);
+    public void onListItemClick(ListView lv, View v, int position, long id){
+		final Dialog contactDialog = new Dialog(this.getActivity().getBaseContext());
 		ContactListActivity.id = position;
-		
+
 
 		contactDialog.setContentView(R.layout.contact_listview);
 		contactDialog.setTitle("Contactar");
-		
+
 		ListView listView = (ListView) contactDialog.findViewById(R.id.listview_contacts);
 		//Saca la info de un contacto a un ListArray
 		final String phone = contacts.get(ContactListActivity.id).getPhoneOffice();
