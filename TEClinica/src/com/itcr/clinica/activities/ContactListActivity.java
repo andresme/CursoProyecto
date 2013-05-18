@@ -51,67 +51,60 @@ public class ContactListActivity extends ListActivity {
 				new String[] {SqlConstants.COLUMN_NAMECONTACT, SqlConstants.COLUMN_POSITION},
 				new int[] {R.id.contactName, R.id.position }, 1);
 
-
-
-
 		setListAdapter(contactAdapter);
 	}
 
 	@Override
     public void onListItemClick(ListView lv, View v, int position, long id){
-		final Dialog contactDialog = new Dialog(this.getBaseContext());
-		ContactListActivity.id = position;
-
-
-		contactDialog.setContentView(R.layout.contact_listview);
-		contactDialog.setTitle("Contactar");
-
-		ListView listView = (ListView) contactDialog.findViewById(R.id.listview_contacts);
-		//Saca la info de un contacto a un ListArray
 		final String phone = contacts.get(ContactListActivity.id).getPhoneOffice();
 		final String cell = contacts.get(ContactListActivity.id).getCell();
-		final String mail = contacts.get(ContactListActivity.id).getMail();
-		
-		
-		ArrayList<String> infoList = new ArrayList<String>();
-		infoList.add(phone);
-		infoList.add(cell);
-		infoList.add(mail);
-		
-		ListAdapter listAdapter = new ArrayAdapter<String>(contactDialog.getContext(), R.layout.simple_layout, infoList);
-		
-		listView.setAdapter(listAdapter);
-		
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-		
-			@Override
-			public void onItemClick(AdapterView<?> parent, final View view,
-					int position, long id){
-				
-				Intent call = new Intent (Intent.ACTION_CALL);
-				Intent email = new Intent(Intent.ACTION_SEND);
-				
-				switch(position){
-				case 0:
-					call.setData(Uri.parse("tel:"+phone));
-					startActivity(call);
-					break;
-				case 1:
-					call.setData(Uri.parse("tel:"+cell));
-					startActivity(call);
-					break;
-				case 2:
-					email.putExtra(Intent.EXTRA_EMAIL, new String[]{mail});
-					email.setType("message/rfc822");
-					startActivity(Intent.createChooser(email, "Choose an Email client :"));
-					break;
-				}
-				
-				
-			}
-		});
-		
-		contactDialog.show();
+    	final String mail = contacts.get(ContactListActivity.id).getMail();
+        final Dialog contactDialog = new Dialog(this);
+
+
+        contactDialog.setContentView(R.layout.contact_listview);
+        contactDialog.setTitle(this.getString(R.string.contact));
+
+        ListView listView = (ListView) contactDialog.findViewById(R.id.listview_contacts);
+
+        ArrayList<String> infoList = new ArrayList<String>();
+        infoList.add(phone);
+        infoList.add(cell);
+        infoList.add(mail);
+
+        ListAdapter listAdapter = new ArrayAdapter<String>(contactDialog.getContext(), R.layout.simple_layout, infoList);
+
+        listView.setAdapter(listAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id){
+
+                Intent call = new Intent (Intent.ACTION_CALL);
+                Intent email = new Intent(Intent.ACTION_SEND);
+
+                switch(position){
+                    case 0:
+                        call.setData(Uri.parse("tel:" + phone));
+                        startActivity(call);
+                        break;
+                    case 1:
+                        call.setData(Uri.parse("tel:"+cell));
+                        startActivity(call);
+                        break;
+                    case 2:
+                        email.putExtra(Intent.EXTRA_EMAIL, new String[]{mail});
+                        email.setType("message/rfc822");
+                        startActivity(Intent.createChooser(email, "Choose an Email client :"));
+                        break;
+                }
+
+
+            }
+        });
+        contactDialog.show();
 	}
 
 }

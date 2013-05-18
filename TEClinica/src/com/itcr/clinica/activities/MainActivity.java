@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.itcr.clinica.R;
 import com.itcr.custom.helpers.AddAppointmentDialog;
+import com.itcr.custom.helpers.CallServiceDialog;
 import com.itcr.custom.sqlite.DataSourceService;
 
 public class MainActivity extends FragmentActivity {
@@ -67,8 +68,7 @@ public class MainActivity extends FragmentActivity {
                 startActivity(call);
                 return true;
             case R.id.menu_call:
-                Intent appointment = new Intent(this, TakeAppointmentActivity.class);
-                startActivity(appointment);
+                new CallServiceDialog(this).show(getSupportFragmentManager(), "Opciones");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

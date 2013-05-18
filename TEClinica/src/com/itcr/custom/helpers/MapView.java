@@ -9,7 +9,6 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-
 import com.itcr.custom.utils.Utils;
 
 public class MapView extends View {
@@ -135,14 +134,15 @@ public class MapView extends View {
 		return true;
 	}
 
+
 	@Override
 	public void onDraw(Canvas g){
 		super.onDraw(g);
 		if(mPosX > 0) mPosX = 0;
 		if(mPosY > 0) mPosY = 0;
 
-        if(mPosX < (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels) mPosX = (-1*mSizeX*mScaleFactor)+mMetrics.widthPixels;
-		if(mPosY < (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels) mPosY = (-1*mSizeY*mScaleFactor)+mMetrics.heightPixels;
+        if(mPosX < (-1*mSizeX*mScaleFactor)+g.getWidth()) mPosX = (-1*mSizeX*mScaleFactor)+g.getWidth();
+		if(mPosY < (-1*mSizeY*mScaleFactor)+g.getHeight()) mPosY = (-1*mSizeY*mScaleFactor)+g.getHeight();
 
         g.translate(mPosX, mPosY);
 		g.scale(mScaleFactor, mScaleFactor);
