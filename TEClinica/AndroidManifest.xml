@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.itcr.clinica.activities.TakeAppointmentActivity"/>
 	    <activity android:name="com.itcr.clinica.activities.ContactListActivity"/>
     </application>
 

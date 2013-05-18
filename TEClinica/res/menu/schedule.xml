@@ -3,19 +3,19 @@
 	<item
 		android:id="@+id/menu_contacts"
 		android:orderInCategory="100"
-		android:showAsAction="always"
+		android:showAsAction="ifRoom"
 		android:title="Contacts"/>
 
 	<item
 		android:id="@+id/menu_emergency"
 		android:orderInCategory="200"
-		android:showAsAction="always"
+		android:showAsAction="ifRoom"
 		android:title="Emergency"/>
 
 	<item
 		android:id="@+id/menu_call"
 		android:orderInCategory="300"
-		android:showAsAction="always"
+		android:showAsAction="ifRoom"
 		android:title="Call"/>
 
 

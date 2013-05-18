@@ -20,7 +20,7 @@ public class MapView extends View {
 	private float mPosX;
 	private float mPosY;
 	private float mMin;
-	private DisplayMetrics mMetrics;
+
 
 	private int mSizeX;
 	private int mSizeY;
@@ -53,6 +53,7 @@ public class MapView extends View {
 	public void sharedConstructor(Context context){
 		float Xpx;
 		float Ypy;
+       DisplayMetrics mMetrics;
 		mSizeX = Utils.getWidth(this.getContext(), MAP);
 		mSizeY = Utils.getHeight(this.getContext(), MAP);
 		mMap = Utils.getBitmapFromAsset(this.getContext(), MAP, 0, 0, mSizeX, mSizeY);
