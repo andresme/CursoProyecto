@@ -1,23 +1,20 @@
 package com.itcr.clinica.activities;
 
-import java.util.List;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.itcr.clinica.R;
-import com.itcr.custom.helpers.AddAppointmentDialog;
 import com.itcr.custom.helpers.ScheduleDialog;
 import com.itcr.custom.sqlite.DataSourceService;
 import com.itcr.custom.sqlite.SqlConstants;
 import com.itcr.datastructures.Appointment;
+
+import java.util.List;
 
 public class ScheduleListActivity extends ListFragment {
 
@@ -87,16 +84,5 @@ public class ScheduleListActivity extends ListFragment {
 		}
 	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.Appointment:
-                new AddAppointmentDialog(this, this.getActivity(), getResources().getString(R.string.menu_add_appointment), datasource)
-                        .show(getFragmentManager(), getResources().getString(R.string.menu_add_appointment));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
 }

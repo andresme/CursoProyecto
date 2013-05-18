@@ -1,5 +1,7 @@
 package com.itcr.clinica.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -45,7 +47,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.Appointment:
+            case R.id.appointment:
                 try{
                 ScheduleListActivity activity = (ScheduleListActivity) getSupportFragmentManager().findFragmentByTag(mTabHost.getCurrentTabTag());
                     new AddAppointmentDialog(activity, this, getResources().getString(R.string.menu_add_appointment), mDatasource)
@@ -54,6 +56,19 @@ public class MainActivity extends FragmentActivity {
                     new AddAppointmentDialog(this, getResources().getString(R.string.menu_add_appointment), mDatasource)
                             .show(getSupportFragmentManager(), getResources().getString(R.string.menu_add_appointment));
                 }
+                return true;
+            case R.id.menu_contacts:
+                Intent contactIntent = new Intent(this, ContactListActivity.class);
+                startActivity(contactIntent);
+                return true;
+            case R.id.menu_emergency:
+                Intent call = new Intent (Intent.ACTION_CALL);
+                call.setData(Uri.parse("tel:" + 25509111));
+                startActivity(call);
+                return true;
+            case R.id.menu_call:
+                Intent appointment = new Intent(this, TakeAppointmentActivity.class);
+                startActivity(appointment);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

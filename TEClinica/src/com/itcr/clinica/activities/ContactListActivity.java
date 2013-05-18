@@ -1,14 +1,11 @@
 package com.itcr.clinica.activities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Dialog;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.View;
@@ -16,14 +13,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.itcr.clinica.R;
 import com.itcr.custom.sqlite.DataSourceService;
 import com.itcr.custom.sqlite.SqlConstants;
 import com.itcr.datastructures.Contact;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class ContactListActivity extends ListFragment {
+
+public class ContactListActivity extends ListActivity {
 
 	
 
@@ -38,7 +37,7 @@ public class ContactListActivity extends ListFragment {
         Cursor contactCursor;
 		ListAdapter contactAdapter;
 
-		datasource = new DataSourceService(this.getActivity().getBaseContext());
+		datasource = new DataSourceService(this.getBaseContext());
 		datasource.open();
 		contacts = datasource.getAllContacts();
 		for(Contact i : contacts){
@@ -47,7 +46,7 @@ public class ContactListActivity extends ListFragment {
 		}
 		contactCursor = datasource.getContactsCursor();
 
-		contactAdapter = new SimpleCursorAdapter(this.getActivity().getBaseContext(),
+		contactAdapter = new SimpleCursorAdapter(this.getBaseContext(),
 				R.layout.row_contact, contactCursor,
 				new String[] {SqlConstants.COLUMN_NAMECONTACT, SqlConstants.COLUMN_POSITION},
 				new int[] {R.id.contactName, R.id.position }, 1);
@@ -60,7 +59,7 @@ public class ContactListActivity extends ListFragment {
 
 	@Override
     public void onListItemClick(ListView lv, View v, int position, long id){
-		final Dialog contactDialog = new Dialog(this.getActivity().getBaseContext());
+		final Dialog contactDialog = new Dialog(this.getBaseContext());
 		ContactListActivity.id = position;
 
 
