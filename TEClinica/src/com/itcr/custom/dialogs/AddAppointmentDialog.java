@@ -1,4 +1,4 @@
-package com.itcr.custom.helpers;
+package com.itcr.custom.dialogs;
 
 import android.app.AlarmManager;
 import android.app.Dialog;
@@ -14,6 +14,7 @@ import android.widget.*;
 import com.itcr.clinica.R;
 import com.itcr.clinica.activities.ScheduleListActivity;
 import com.itcr.custom.sqlite.DataSourceService;
+import com.itcr.custom.utils.NotificationReceiver;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

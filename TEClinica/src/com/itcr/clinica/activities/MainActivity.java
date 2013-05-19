@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.itcr.clinica.R;
-import com.itcr.custom.helpers.AddAppointmentDialog;
-import com.itcr.custom.helpers.CallServiceDialog;
+import com.itcr.custom.dialogs.AddAppointmentDialog;
+import com.itcr.custom.dialogs.CallServiceDialog;
 import com.itcr.custom.sqlite.DataSourceService;
 
 public class MainActivity extends FragmentActivity {

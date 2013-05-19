@@ -1,7 +1,5 @@
 package com.itcr.clinica.activities;
 
-import java.util.List;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -9,12 +7,13 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.itcr.clinica.R;
-import com.itcr.custom.helpers.WebSiteDialog;
+import com.itcr.custom.dialogs.WebSiteDialog;
 import com.itcr.custom.sqlite.DataSourceService;
 import com.itcr.custom.sqlite.SqlConstants;
 import com.itcr.datastructures.Service;
+
+import java.util.List;
 
 
 public class InformationListActivity extends ListFragment {

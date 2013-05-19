@@ -1,4 +1,4 @@
-package com.itcr.custom.helpers;
+package com.itcr.custom.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;

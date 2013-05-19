@@ -9,7 +9,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.itcr.clinica.R;
-import com.itcr.custom.helpers.ScheduleDialog;
+import com.itcr.custom.dialogs.ScheduleDialog;
 import com.itcr.custom.sqlite.DataSourceService;
 import com.itcr.custom.sqlite.SqlConstants;
 import com.itcr.datastructures.Appointment;
