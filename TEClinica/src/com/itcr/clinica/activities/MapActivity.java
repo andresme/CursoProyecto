@@ -14,11 +14,7 @@ public class MapActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MapView mMapView;
-
-
-        mMapView = new MapView(this.getActivity());
-        return mMapView;
+        return new MapView(this.getActivity());
     }
 
 }

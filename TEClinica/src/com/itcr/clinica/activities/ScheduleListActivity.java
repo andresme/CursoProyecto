@@ -48,7 +48,6 @@ public class ScheduleListActivity extends ListFragment {
         loadAppointments();
     }
 
-	//Loads appointments from database and put them on the listview
 	public void loadAppointments(){
 
 		Cursor appointmentCursor;

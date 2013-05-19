@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class CallServiceDialog extends DialogFragment{
 
-    private final static String phone = "2550-9180";
-    private final static String website = "http://www.tec.ac.cr/citas" ;
+    private final static String PHONE = "2550-9180";
+    private final static String WEBSITE = "http://www.tec.ac.cr/citas" ;
 
     private Context mContext;
 
@@ -32,15 +32,13 @@ public class CallServiceDialog extends DialogFragment{
         final Dialog optionDialog = new Dialog(mContext);
 
         optionDialog.setContentView(R.layout.take_appointment);
-        optionDialog.setTitle("Opciones");
+        optionDialog.setTitle(getResources().getString(R.string.options));
 
         ListView listView = (ListView) optionDialog.findViewById(R.id.listview_option);
 
-
-
         ArrayList<String> optionList = new ArrayList<String>();
-        optionList.add(phone);
-        optionList.add(website);
+        optionList.add(PHONE);
+        optionList.add(WEBSITE);
 
 
         ListAdapter listAdapter = new ArrayAdapter<String>(optionDialog.getContext(), R.layout.simple_layout,optionList);
@@ -58,11 +56,11 @@ public class CallServiceDialog extends DialogFragment{
 
                 switch(position){
                     case 0:
-                        call.setData(Uri.parse("tel:"+phone));
+                        call.setData(Uri.parse("tel:"+ PHONE));
                         startActivity(call);
                         break;
                     case 1:
-                        browser.setData(Uri.parse(website));
+                        browser.setData(Uri.parse(WEBSITE));
                         startActivity(browser);
                         break;
                 }

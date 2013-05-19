@@ -24,9 +24,7 @@ import java.util.List;
 
 public class ContactListActivity extends ListActivity {
 
-	
 
-	private static int id;
 	private List<Contact> contacts;
 
 	@Override
@@ -56,9 +54,9 @@ public class ContactListActivity extends ListActivity {
 
 	@Override
     public void onListItemClick(ListView lv, View v, int position, long id){
-		final String phone = contacts.get(ContactListActivity.id).getPhoneOffice();
-		final String cell = contacts.get(ContactListActivity.id).getCell();
-    	final String mail = contacts.get(ContactListActivity.id).getMail();
+		final String phone = contacts.get(position).getPhoneOffice();
+		final String cell = contacts.get(position).getCell();
+    	final String mail = contacts.get(position).getMail();
         final Dialog contactDialog = new Dialog(this);
 
 

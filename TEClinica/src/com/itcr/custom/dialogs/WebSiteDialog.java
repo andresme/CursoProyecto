@@ -13,6 +13,11 @@ import com.itcr.clinica.R;
 
 public class WebSiteDialog extends DialogFragment {
 
+    private final static String HEADER = "Ofrece: -";
+    private final static String NEW_HEADER = "*";
+    private final static String ITEM_START = " -";
+    private final static String NEW_ITEM_START = "\n*";
+
     private Context mContext;
     String info;
     String website;
@@ -27,8 +32,8 @@ public class WebSiteDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(mContext.getResources().getString(R.string.offers));
-        this.info = this.info.replace("Ofrece: -", "*");
-        this.info = this.info.replaceAll(" -","\n*");
+        this.info = this.info.replace(HEADER, NEW_HEADER);
+        this.info = this.info.replaceAll(ITEM_START, NEW_ITEM_START);
         builder.setMessage(info);
         builder.setCancelable(true);
         builder.setPositiveButton(mContext.getResources().getString(R.string.go_web_site),  new DialogInterface.OnClickListener() {

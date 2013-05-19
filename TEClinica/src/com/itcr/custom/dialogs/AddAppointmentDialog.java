@@ -24,6 +24,8 @@ import java.util.Date;
 
 public class AddAppointmentDialog extends DialogFragment {
 
+    private final static String DATE_STYLE = "dd/MM/yyyy - HH:mm";
+
     private ScheduleListActivity mActivity;
     private Context mContext;
     private String mTitle;
@@ -89,7 +91,7 @@ public class AddAppointmentDialog extends DialogFragment {
 
     public void addNotification(String date, int id){
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_STYLE);
         Date date_;
         try {
             date_ = dateFormat.parse(date);
@@ -102,8 +104,6 @@ public class AddAppointmentDialog extends DialogFragment {
         } catch (ParseException e) {
             Log.e("ParseException","could not parse"+date);
         }
-
-
 
     }
 }

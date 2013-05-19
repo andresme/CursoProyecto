@@ -68,7 +68,7 @@ public class MainActivity extends FragmentActivity {
                 startActivity(call);
                 return true;
             case R.id.menu_call:
-                new CallServiceDialog(this).show(getSupportFragmentManager(), "Opciones");
+                new CallServiceDialog(this).show(getSupportFragmentManager(), getResources().getString(R.string.options));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
