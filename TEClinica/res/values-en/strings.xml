@@ -29,5 +29,6 @@
     <string name="emergency_call">Emergency Call</string>
 	<string name="go_web_site">Go to website</string>
 	<string name="offers">Offers</string>
+	<string name="about">About</string>
 
 </resources>

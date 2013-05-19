@@ -2,26 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 	<item
 		android:id="@+id/menu_contacts"
+		android:icon="@drawable/contacts"
 		android:orderInCategory="100"
 		android:showAsAction="ifRoom"
-		android:title="Contacts"/>
+		android:title="@string/contact"/>
 
 	<item
 		android:id="@+id/menu_emergency"
+		android:icon="@drawable/emergency"
 		android:orderInCategory="200"
 		android:showAsAction="ifRoom"
-		android:title="Emergency"/>
+		android:title="@string/emergency_call"/>
 
 	<item
 		android:id="@+id/menu_call"
+		android:icon="@drawable/info"
 		android:orderInCategory="300"
 		android:showAsAction="ifRoom"
-		android:title="Call"/>
-
-
-
+		android:title="@string/services"/>
 
     <item android:id="@+id/appointment" android:title="@string/menu_add_appointment" android:orderInCategory="400"/>
-    <item android:id="@+id/notification" android:title="@string/menu_settings" android:orderInCategory="400"/>
+
+	<item android:id="@+id/notification" android:title="@string/menu_settings" android:orderInCategory="400"/>
+
+	<item android:id="@+id/about" android:title="@string/about" android:orderInCategory="400"/>
 
 </menu>
