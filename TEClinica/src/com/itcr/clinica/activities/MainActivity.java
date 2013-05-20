@@ -8,8 +8,10 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.itcr.clinica.R;
+import com.itcr.custom.dialogs.AboutDialog;
 import com.itcr.custom.dialogs.AddAppointmentDialog;
 import com.itcr.custom.dialogs.CallServiceDialog;
+import com.itcr.custom.dialogs.ConfigurationDialog;
 import com.itcr.custom.sqlite.DataSourceService;
 
 public class MainActivity extends FragmentActivity {
@@ -35,7 +37,6 @@ public class MainActivity extends FragmentActivity {
                 MapActivity.class, null);
         mTabHost.addTab(mTabHost.newTabSpec(getResources().getString(R.string.schedule)).setIndicator(getResources().getString(R.string.schedule)),
                 ScheduleListActivity.class, null);
-
 
 	}
 
@@ -69,6 +70,12 @@ public class MainActivity extends FragmentActivity {
                 return true;
             case R.id.menu_call:
                 new CallServiceDialog(this).show(getSupportFragmentManager(), getResources().getString(R.string.options));
+                return true;
+            case R.id.about:
+                new AboutDialog(this).show(getSupportFragmentManager(), getResources().getString(R.string.about));
+                return true;
+            case R.id.notification:
+                new ConfigurationDialog(this).show(getSupportFragmentManager(), getResources().getString(R.string.notification));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

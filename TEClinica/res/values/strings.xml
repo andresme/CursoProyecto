@@ -31,6 +31,14 @@
 	<string name="offers">Ofrecemos</string>
 	<string name="about">Acerca de</string>
 	<string name="options">Opciones</string>
+	<string name="notification">Activar Notificaciones</string>
+
+	<string name="irene_gamboa">Irene Gamboa Padilla</string>
+	<string name="andres_morales">Andrés Morales Esquivel</string>
+	<string name="sebastian_ramirez">Sebastian Ramírez Rodríguez</string>
+
+	<string name="programmers">Programadores:</string>
+	<string name="art">Arte:</string>
 
 
 </resources>

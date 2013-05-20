@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="@string/programmers"
+		android:id="@+id/textView"
+		android:layout_gravity="left|center_vertical"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="@string/irene_gamboa"
+		android:id="@+id/textView2"
+		android:layout_gravity="center"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="@string/andres_morales"
+		android:id="@+id/textView3"
+		android:layout_gravity="center"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="@string/art"
+		android:id="@+id/textView4"
+		android:layout_gravity="left|center_vertical"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="@string/sebastian_ramirez"
+		android:id="@+id/textView5"
+		android:layout_gravity="center"/>
+</LinearLayout>

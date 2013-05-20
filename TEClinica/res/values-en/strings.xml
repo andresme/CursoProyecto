@@ -31,5 +31,13 @@
 	<string name="offers">Offers</string>
 	<string name="about">About</string>
 	<string name="options">Options</string>
+	<string name="notification">Activate Notifications</string>
+
+	<string name="irene_gamboa">Irene Gamboa Padilla</string>
+	<string name="andres_morales">Andrés Morales Esquivel</string>
+	<string name="sebastian_ramirez">Sebastian Ramírez Rodríguez</string>
+
+	<string name="programmers">Programmers:</string>
+	<string name="art">Art:</string>
 
 </resources>
