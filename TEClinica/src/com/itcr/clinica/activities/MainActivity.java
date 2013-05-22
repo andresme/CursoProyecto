@@ -7,10 +7,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.itcr.clinica.R;
-import com.itcr.custom.dialogs.AboutDialog;
-import com.itcr.custom.dialogs.AddAppointmentDialog;
-import com.itcr.custom.dialogs.CallServiceDialog;
-import com.itcr.custom.dialogs.ConfigurationDialog;
+import com.itcr.custom.dialogs.*;
 import com.itcr.custom.sqlite.DataSourceService;
 
 public class MainActivity extends FragmentActivity {
@@ -63,7 +60,7 @@ public class MainActivity extends FragmentActivity {
                 startActivity(contactIntent);
                 return true;
             case R.id.menu_emergency:
-
+                new ConfirmDialog(this).show(getSupportFragmentManager(), getResources().getString(R.string.confirm));
                 return true;
             case R.id.menu_call:
                 new CallServiceDialog(this).show(getSupportFragmentManager(), getResources().getString(R.string.options));
