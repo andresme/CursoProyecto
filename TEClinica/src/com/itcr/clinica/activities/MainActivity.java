@@ -1,7 +1,6 @@
 package com.itcr.clinica.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -64,9 +63,7 @@ public class MainActivity extends FragmentActivity {
                 startActivity(contactIntent);
                 return true;
             case R.id.menu_emergency:
-                Intent call = new Intent (Intent.ACTION_CALL);
-                call.setData(Uri.parse("tel:" + 25509111));
-                startActivity(call);
+
                 return true;
             case R.id.menu_call:
                 new CallServiceDialog(this).show(getSupportFragmentManager(), getResources().getString(R.string.options));

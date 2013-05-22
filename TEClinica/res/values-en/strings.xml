@@ -18,6 +18,8 @@
     <string name="dialog_message_delete">Delete this Activity?</string>
     <string name="schedule">Schedule</string>
     <string name="appointment_toast_message">Add an appointment from the menu.</string>
+	<string name="confirm">Confirm</string>
+	<string name="confirm_msg">Confirm emergency call</string>
     <string name="positive">Accept</string>
     <string name="negative">Cancel</string>
     <string name="menu_add_appointment">Add Appointment</string>
@@ -36,6 +38,8 @@
 	<string name="irene_gamboa">Irene Gamboa Padilla</string>
 	<string name="andres_morales">Andrés Morales Esquivel</string>
 	<string name="sebastian_ramirez">Sebastian Ramírez Rodríguez</string>
+
+	<string name="map_credits">Map: tec.ac.cr</string>
 
 	<string name="programmers">Programmers:</string>
 	<string name="art">Art:</string>

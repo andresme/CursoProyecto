@@ -44,4 +44,12 @@
 		android:text="@string/sebastian_ramirez"
 		android:id="@+id/textView5"
 		android:layout_gravity="center"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="@string/map_credits"
+		android:id="@+id/textView6"
+		android:layout_gravity="center"/>
 </LinearLayout>

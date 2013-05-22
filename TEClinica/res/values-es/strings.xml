@@ -18,6 +18,8 @@
     <string name="dialog_message_delete">¿Desea Borrar esta actividad?</string>
     <string name="schedule">Calendario</string>
     <string name="appointment_toast_message">Debe agregar una cita primero desde el menu.</string>
+	<string name="confirm">Confirmar</string>
+	<string name="confirm_msg">Confirmar llamada de emergencia</string>
     <string name="positive">Aceptar</string>
     <string name="negative">Cancelar</string>
     <string name="menu_add_appointment">Agregar Cita</string>
@@ -36,6 +38,8 @@
 	<string name="irene_gamboa">Irene Gamboa Padilla</string>
 	<string name="andres_morales">Andrés Morales Esquivel</string>
 	<string name="sebastian_ramirez">Sebastian Ramírez Rodríguez</string>
+
+	<string name="map_credits">Mapa: tec.ac.cr</string>
 
 	<string name="programmers">Programadores:</string>
 	<string name="art">Arte:</string>
